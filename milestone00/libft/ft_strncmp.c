@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 04:18:32 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/11 04:18:32 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/11 05:10:53 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/11 05:10:53 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	memcmp(const void *s1, const void *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char *ptr1 = (unsigned char *)s1;
-    unsigned char *ptr2 = (unsigned char *)s2;
+	char *ptr1 = (char *)s1;
+	char *ptr2 = (char *)s2;
 
 	while (n-- > 0)
 	{
