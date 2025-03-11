@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ilaliev <ilaliev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 03:32:12 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/11 03:32:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/11 12:58:58 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ilaliev <ilaliev@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 03:33:08 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/11 03:33:08 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/11 12:52:56 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/11 12:57:00 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.c"
+#include "libft.h"
 
 char	*strchr(const char *s, int c)
 {
