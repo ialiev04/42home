@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 04:27:59 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 19:09:29 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/13 23:16:48 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/13 23:31:41 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *s)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	i;
-	int	positive;
-	int	ret;
+	t_list	*current;
+	t_list	*next;
 
-	i = 0;
-	positive = 1;
-	ret = 0;
-	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
-		i++;
-	if (s[i] == '-')
+	current = *lst;
+	next = current->next;
+	while (current)
 	{
-		positive = -1;
-		i++;
+		del(current->content);
+		free(current);
+		current = next;
+		next = current->next;
 	}
-	else if (s[i] == '+')
-		i++;
-	while (s[i] == '0')
-		i++;
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		ret = ret * 10 + (s[i] - '0');
-		i++;
-	}
-	return (ret * positive);
+	*lst = NULL;
 }
