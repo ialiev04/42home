@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	ft_unsigned_num_len(unsigned int n)
+int	unsigned_num_len(unsigned int n)
 {
 	int		len;
 
@@ -58,7 +58,7 @@ int	hex_len(uintptr_t p)
 	return (len);
 }
 
-int	put_hex()
+int	put_hex(unsigned int x, char format)
 {
 	char	c;
 

@@ -18,5 +18,5 @@ int	print_hex(unsigned int x, char format)
 		return (write(1, "0", 1));
 	else if (put_hex(x, format) < 0)
 		return (-1);
-	return (hex_len(x));
+	return (unsigned_hex_len(x));
 }
