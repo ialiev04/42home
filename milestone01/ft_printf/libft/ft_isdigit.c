@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:41:01 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/10 18:04:00 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:21:41 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_isdigit(int c)
 {
 	if (c > 47 && c < 58)
-		return (c);
+		return (1);
 	return (0);
 }

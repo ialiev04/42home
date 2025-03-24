@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <limits.h>
 
 // struct for bonus
 typedef struct s_list

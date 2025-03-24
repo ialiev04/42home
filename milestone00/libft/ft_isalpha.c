@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:14:03 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/10 18:03:50 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:21:28 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_isalpha(int c)
 {
 	if ((c > 64 && c < 91) || (c > 96 && c < 123))
-		return (c);
+		return (1);
 	return (0);
 }
