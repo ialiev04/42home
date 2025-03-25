@@ -1,25 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 19:25:02 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/14 12:53:22 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/24 19:51:32 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/24 19:51:35 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*ret;
-
-	ret = malloc(sizeof(t_list));
-	if (ret = NULL)
-		return (NULL);
-	ret->content = content;
-	ret->next = NULL;
-	return (ret);
-}
