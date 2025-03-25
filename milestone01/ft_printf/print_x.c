@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:32:34 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/19 15:32:34 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:18:40 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int	print_hex(unsigned int x, char format)
 		return (write(1, "0", 1));
 	else if (put_hex(x, format) < 0)
 		return (-1);
-	return (unsigned_hex_len(x));
+	return (hex_len(x));
 }

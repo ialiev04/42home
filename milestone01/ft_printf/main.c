@@ -6,17 +6,18 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:42:12 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/18 15:42:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:41:38 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	what_case(char format, va_list args)
 {
 	int	len;
 
-	len = -1
+	len = -1;
 	if (format == 'c')
 		len = print_c(va_arg(args, int));
 	else if (format == 's')
@@ -34,7 +35,7 @@ int	what_case(char format, va_list args)
 	else if (format == '%')
 		len = write(1, "%", 1);
 	return (len);
-	}
+}
 
 int	put_all(char *format, va_list args)
 {
@@ -42,15 +43,19 @@ int	put_all(char *format, va_list args)
 	int	len;
 
 	len = 0;
+	fail = 0;
 	while (*format)
 	{
 		if (*format == '%')
-			failcheck = what_case(*++format, len);
+		{
+			format++;
+			fail = what_case(*format, args);
+		}
 		else
-			failcheck = write(1, format, 1);
-		if (failcheck > 0)
-			return (failcheck);
-		len += failcheck;
+			fail = write(1, format, 1);
+		if (fail == -1)
+			return (-1);
+		len += fail;
 		format++;
 	}
 	return (len);
@@ -65,6 +70,8 @@ int	ft_printf(const char *format, ...)
 		return (0);
 	va_start(args, format);
 	len = put_all((char *)format, args);
+	if (len < 0)
+		return (-1);
 	va_end(args);
 	return (len);
 }

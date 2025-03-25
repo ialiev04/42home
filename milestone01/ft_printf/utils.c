@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:09:35 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/18 20:09:35 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:41:17 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	unsigned_num_len(unsigned int n)
 {
 	int		len;
 
+	if (n == 0)
+		return (1);
 	len = 0;
 	while (n != 0)
 	{
@@ -31,7 +33,7 @@ char	*ft_uitoa(unsigned int n)
 	unsigned int	num;
 	char			*ret;
 
-	len = ft_num_len(n);
+	len = unsigned_num_len(n);
 	num = n;
 	ret = malloc(len + 1);
 	if (ret == NULL)
@@ -45,7 +47,7 @@ char	*ft_uitoa(unsigned int n)
 	return (ret);
 }
 
-int	hex_len(uintptr_t p)
+int	hex_len(uintptr_t x)
 {
 	int	len;
 
@@ -58,7 +60,7 @@ int	hex_len(uintptr_t p)
 	return (len);
 }
 
-int	put_hex(unsigned int x, char format)
+int	put_hex(uintptr_t x, char format)
 {
 	char	c;
 

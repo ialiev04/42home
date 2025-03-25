@@ -7,10 +7,10 @@ AR = ar
 ARFLAGS = rcs
 
 SRCS =	main.c \
-		./src/utils.c \
-		./src/print_csp.c \
-		./src/print_diu.c \
-		./src/print_x.c
+		utils.c \
+		print_csp.c \
+		print_diu.c \
+		print_x.c
 
 OBJS = $(SRCS:.c=.o)
 
