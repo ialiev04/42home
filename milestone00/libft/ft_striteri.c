@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 20:29:30 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 17:49:35 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:30:44 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	unsigned int	i;
 
 	if (!s)
-		return (NULL);
+		return ;
 	i = 0;
 	while (s[i])
 	{

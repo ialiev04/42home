@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 22:06:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/12 10:28:47 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:29:28 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	sub_len = strlen(s);
+	sub_len = ft_strlen(s);
 	if (start >= sub_len)
-		return (strdup(""));
+		return (ft_strdup(""));
 	sub_len = sub_len - start;
 	if (sub_len > len)
 		sub_len = len;

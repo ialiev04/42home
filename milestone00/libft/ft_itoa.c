@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:45:38 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/12 21:15:26 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:30:16 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_num_len(int n)
 	int		len;
 	long	num;
 
-	if (num >= 0 && num <= 9)
+	if (n >= 0 && n <= 9)
 		return (1);
 	len = 0;
 	num = (long)n;
