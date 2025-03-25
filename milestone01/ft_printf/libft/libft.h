@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 03:22:29 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 23:38:28 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:23:43 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 // struct for bonus
 typedef struct s_list
 {
-	void *content;
-	struct s_list *next;
-} t_list;
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 // mandatory
 int		ft_atoi(const char *s);

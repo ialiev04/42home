@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:27:21 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/10 18:43:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:19:58 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t	i;
 	size_t	srclen;
 
-	if (src == NULL)
-		return (0);
 	i = 0;
 	srclen = 0;
 	while (src[srclen])

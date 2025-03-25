@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:44:12 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 22:47:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:23:55 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	if (!lst)
 		return (NULL);
 	ret = lst;
-	while(ret->next)
+	while (ret->next)
 		ret = ret->next;
 	return (ret);
 }

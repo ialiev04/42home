@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 03:32:12 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/11 12:58:58 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 14:08:19 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)
 		return (c + 32);

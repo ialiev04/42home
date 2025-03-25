@@ -6,13 +6,13 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:26:24 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 22:50:27 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:24:36 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
 	*lst = new;

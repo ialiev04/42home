@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 22:48:01 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 22:55:40 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/20 16:44:08 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*temp;
 
-	temp = ft_lstlast(*lst);
-	if (!lst)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
 	{
 		*lst = new;
 		return ;
 	}
+	temp = ft_lstlast(*lst);
 	temp->next = new;
 }
