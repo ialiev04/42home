@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 20:20:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 17:49:56 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/13 17:35:27 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:27:08 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
-	char			*ret;
+	char			*return_val;
 
-	if (!s)
-		return (NULL);
-	i = ft_strlen(s);
-	ret = malloc(i + 1);
-	if (ret == NULL)
-		return (NULL);
 	i = 0;
-	while (s[i])
-	{
-		ret[i] = f(i, s[i]);
+	if (s == NULL)
+		return (NULL);
+	while (s[i] != '\0')
 		i++;
+	return_val = (char *)malloc((size_t)i + 1);
+	if (return_val == NULL)
+		return (NULL);
+	return_val[i] = '\0';
+	while (i > 0)
+	{
+		i--;
+		return_val[i] = (*f)(i, s[i]);
 	}
-	ret[i] = '\0';
-	return (ret);
+	return (return_val);
 }

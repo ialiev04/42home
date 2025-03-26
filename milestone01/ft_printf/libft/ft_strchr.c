@@ -3,27 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 12:52:56 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 16:03:19 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/05 15:12:07 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/16 02:27:05 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
-	char	*ret;
+	size_t	count_str;
+	char	*ret_str;
+	char	to_find;
 
-	ret = (char *)s;
-	while (*ret != '\0')
+	ret_str = (char *)str;
+	count_str = 0;
+	to_find = (char)c;
+	while (ret_str[count_str] != '\0')
 	{
-		if (*ret == (char)c)
-			return (ret);
-		ret++;
+		if (ret_str[count_str] == to_find)
+			return (&ret_str[count_str]);
+		count_str++;
 	}
-	if ((char)c == '\0')
-		return (ret);
+	if (to_find == '\0')
+		return (&ret_str[count_str]);
 	return (NULL);
 }

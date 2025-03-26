@@ -3,38 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 22:06:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 13:29:28 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/11 18:35:25 by ialiev            #+#    #+#             */
+/*   Updated: 2024/12/18 01:19:54 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*ft_empty_string(void)
+{
+	char	*substr;
+
+	substr = (char *)malloc(1);
+	if (substr == NULL)
+		return (NULL);
+	substr[0] = '\0';
+	return (substr);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ret;
-	size_t	sub_len;
-	size_t	i;
+	char			*substr;
+	unsigned int	i;
+	size_t			s_len;
 
-	if (!s)
-		return (NULL);
-	sub_len = ft_strlen(s);
-	if (start >= sub_len)
-		return (ft_strdup(""));
-	sub_len = sub_len - start;
-	if (sub_len > len)
-		sub_len = len;
-	ret = malloc(sub_len + 1);
-	if (ret == NULL)
-		return (NULL);
 	i = 0;
-	while (i < sub_len)
+	if (s == NULL)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= (unsigned int)s_len)
+		return (ft_empty_string());
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = (char *)malloc(len + 1);
+	if (substr == NULL)
+		return (NULL);
+	while (i < len && s[start + i] != '\0')
 	{
-		ret[i] = s[start + i];
+		substr[i] = s[start + i];
 		i++;
 	}
-	ret[i] = '\0';
-	return (ret);
+	substr[i] = '\0';
+	return (substr);
 }

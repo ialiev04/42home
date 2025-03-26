@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 18:02:52 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 13:54:28 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/07 20:03:14 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:03:29 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*dest;
-	unsigned char	*sauce;
+	unsigned char	*destination;
+	unsigned char	*source;
 	size_t			i;
 
-	if (!src && !dst)
-		return (NULL);
-	dest = (unsigned char *) dst;
-	sauce = (unsigned char *) src;
-	i = 0;
-	if (dst > src)
+	destination = (unsigned char *) dst;
+	source = (unsigned char *) src;
+	if (destination < source)
 	{
-		while (len-- > 0)
-			dest[len] = sauce[len];
-	}
-	else
-	{
+		i = 0;
 		while (i < len)
 		{
-			dest[i] = sauce[i];
+			destination[i] = source[i];
 			i++;
+		}
+	}
+	else if (source < destination)
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			destination[i] = source[i];
 		}
 	}
 	return (dst);

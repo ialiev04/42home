@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 03:57:10 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/11 03:57:10 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/07 19:48:55 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:03:28 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*ret;
+	unsigned char	to_find;
+	unsigned char	*string;
+	size_t			i;
 
-	ret = (unsigned char *)s;
-	while (n-- > 0)
-	{
-		if (*ret == (unsigned char)c)
-			return (ret);
-		ret++;
-	}
-	return (NULL);
+	to_find = (unsigned char) c;
+	string = (unsigned char *) s;
+	i = 0;
+	while (i < n && string[i] != to_find)
+		i++;
+	if (i == n)
+		return (NULL);
+	else
+		return ((void *)(string + i));
 }

@@ -3,29 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 05:22:20 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 16:03:05 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/05 15:50:31 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:01:42 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *str, int c)
 {
-	char	*ret;
-	char	*last_ret;
+	const char	*last_occurance;
+	size_t		count_str;
 
-	ret = (char *)s;
-	last_ret = NULL;
-	while (*ret != '\0')
+	last_occurance = NULL;
+	count_str = 0;
+	while (str[count_str] != '\0')
 	{
-		if (*ret == (char)c)
-			last_ret = ret;
-		ret++;
+		if (str[count_str] == (char) c)
+		{
+			last_occurance = &str[count_str];
+		}
+		count_str++;
 	}
 	if ((char)c == '\0')
-		return (ret);
-	return (last_ret);
+		return ((char *)&str[count_str]);
+	if (last_occurance == NULL)
+		return (NULL);
+	return ((char *) last_occurance);
 }

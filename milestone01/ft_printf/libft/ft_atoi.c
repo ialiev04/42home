@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 04:27:59 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 19:09:29 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/06 21:00:50 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 20:59:02 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	ft_atoi(const char *s)
 {
 	int	i;
-	int	positive;
-	int	ret;
+	int	is_pos;
+	int	return_val;
 
 	i = 0;
-	positive = 1;
-	ret = 0;
+	is_pos = 1;
+	return_val = 0;
 	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
 		i++;
 	if (s[i] == '-')
 	{
-		positive = -1;
+		is_pos = -1;
 		i++;
 	}
 	else if (s[i] == '+')
@@ -34,8 +34,9 @@ int	ft_atoi(const char *s)
 		i++;
 	while (s[i] >= '0' && s[i] <= '9')
 	{
-		ret = ret * 10 + (s[i] - '0');
+		return_val = return_val * 10 + (s[i] - '0');
 		i++;
 	}
-	return (ret * positive);
+	return_val = return_val * is_pos;
+	return (return_val);
 }

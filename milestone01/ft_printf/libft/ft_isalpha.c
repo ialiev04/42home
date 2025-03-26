@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 14:14:03 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/25 15:12:56 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/10/09 11:25:31 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:04:47 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+int	ft_isalpha(int tocheck)
 {
-	if ((c > 64 && c < 91) || (c > 96 && c < 123))
+	if ((tocheck > 64 && tocheck < 91) || (tocheck > 96 && tocheck < 123))
 		return (1);
-	return (0);
+	else
+		return (0);
 }

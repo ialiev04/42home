@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:38:17 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 13:31:10 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/13 18:50:47 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:03:31 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

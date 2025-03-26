@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:38 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/25 19:18:33 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/26 18:43:19 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ int	print_uint(int num)
 		return (-1);
 	i = 0;
 	while (num_ascii[i])
+	{
 		if (write(1, &num_ascii[i++], 1) < 1)
+		{
+			free(num_ascii);
 			return (-1);
+		}
+	}
 	free(num_ascii);
 	return (i);
 }

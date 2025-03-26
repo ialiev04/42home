@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 18:27:21 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/25 15:19:58 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/04 18:54:50 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:03:38 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
+	size_t	len_src;
 	size_t	i;
-	size_t	srclen;
 
+	len_src = 0;
 	i = 0;
-	srclen = 0;
-	while (src[srclen])
-		srclen++;
-	if (dstsize > 0)
+	while (src[len_src] != '\0')
+		len_src++;
+	if (dstsize == 0)
+		return (len_src);
+	while (i < dstsize - 1 && src[i] != '\0')
 	{
-		while (src[i] != '\0' && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		dst[i] = src[i];
+		i++;
 	}
-	return (srclen);
+	dst[i] = '\0';
+	return (len_src);
 }

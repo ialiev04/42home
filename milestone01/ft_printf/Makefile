@@ -6,8 +6,8 @@ LIBFTDIR = ./libft
 AR = ar
 ARFLAGS = rcs
 
-SRCS =	main.c \
-		utils.c \
+SRCS =	ft_printf.c \
+		ft_printf_utils.c \
 		print_csp.c \
 		print_diu.c \
 		print_x.c

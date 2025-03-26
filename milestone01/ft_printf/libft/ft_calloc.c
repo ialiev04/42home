@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 21:07:43 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/12 11:53:03 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/11 16:44:29 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:05:17 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char	*ret;
-	size_t			i;
+	size_t	total_size;
+	void	*return_val;
+	size_t	i;
 
+	i = 0;
 	if (count == 0 || size == 0)
 		return (malloc(0));
 	if (count != 0 && (SIZE_MAX / count) < size)
 		return (NULL);
-	ret = malloc(count * size);
-	if (ret == NULL)
+	total_size = count * size;
+	return_val = malloc(total_size);
+	if (return_val == NULL)
 		return (NULL);
-	i = 0;
-	while (i < (count * size))
-		((char *)ret)[i++] = 0;
-	return (ret);
+	while (i < total_size)
+	{
+		((char *)return_val)[i] = 0;
+		i++;
+	}
+	return (return_val);
 }

@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:23 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/25 19:42:20 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/03/26 13:10:31 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <limits.h>
+# include <stdarg.h>
+# include <stdio.h>
 
 // functions
 int		ft_printf(const char *format, ...);

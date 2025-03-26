@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 10:29:07 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/12 11:52:20 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/11 19:34:42 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:03:37 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s1_len;
 	size_t	s2_len;
 	size_t	i;
-	char	*ret;
+	char	*return_val;
 
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	ret = malloc (s1_len + s2_len + 1);
-	if (ret == NULL)
+	i = 0;
+	return_val = (char *)malloc(s1_len + s2_len + 1);
+	if (return_val == NULL)
 		return (NULL);
-	i = 0;
-	while (s1[i])
+	while (i < s1_len)
 	{
-		ret[i] = s1[i];
+		return_val[i] = s1[i];
 		i++;
 	}
 	i = 0;
-	while (s2[i])
+	while (i < s2_len)
 	{
-		ret[s1_len + i] = s2[i];
+		return_val[s1_len + i] = s2[i];
 		i++;
 	}
-	ret[s1_len + s2_len] = '\0';
-	return (ret);
+	return_val[s1_len + s2_len] = '\0';
+	return (return_val);
 }

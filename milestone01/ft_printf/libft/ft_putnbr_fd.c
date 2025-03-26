@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:53:32 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/13 17:49:37 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/11/13 19:15:33 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/15 16:51:59 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@ void	ft_putnbr_fd(int n, int fd)
 		n = -n;
 	}
 	if (n > 9)
-	{
 		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-	else
-	{
-		c = n + 48;
-		write(fd, &c, 1);
-	}
+	c = (n % 10) + '0';
+	write(fd, &c, 1);
 }

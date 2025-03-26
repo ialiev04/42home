@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: ialiev <ialiev@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 15:23:28 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/25 15:13:11 by ilaliev          ###   ########.fr       */
+/*   Created: 2024/10/11 09:45:49 by ialiev            #+#    #+#             */
+/*   Updated: 2024/11/14 21:03:26 by ialiev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+int	ft_isprint(int tocheck)
 {
-	if (c > 31 && c < 127)
+	if (tocheck > 31 && tocheck < 127)
 		return (1);
-	return (0);
+	else
+		return (0);
 }
