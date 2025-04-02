@@ -21,7 +21,7 @@ $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 %.o: %.c $(HEADERS)
-	$(CC) -c $(CFLAGS) $?
+	@$(CC) -c $(CFLAGS) $?
 
 clean:
 	rm -f $(OBJECTS)
