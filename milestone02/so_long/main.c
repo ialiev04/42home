@@ -16,15 +16,18 @@
 	error_code table:
 	(1) ac != 2
 	(2) av[1] != .ber file
+	(3) trouble opening .ber file
+	(4) .ber map not rectangular
 */
 
 void	error_message(int error_code)
 {
 	if (error_code == 1)
-		exit();
+		ft_printf();
 	if (error_code == 2)
-		exit()
+		ft_printf()
 	// room for errors
+	exit();
 }
 
 void	validate_input(int ac, char **av)
@@ -34,15 +37,14 @@ void	validate_input(int ac, char **av)
 	if (ac != 2)
 		error_message(1);
 	last_dot = ft_strrchr(av[1], '.');
-	if (!last_dot || (ft_strncmp(last_dot, ".ber", 4) != 0))
+	if (!last_dot || (ft_strncmp(last_dot, ".ber\0", 5) != 0))
 		error_message(2);
 }
 
 int	main(int ac, char **av)
 {
 	validate_input(ac, av);
-
-	// map valid?
+	init_map(ac, av);
 
 	// init all lists and variables
 
