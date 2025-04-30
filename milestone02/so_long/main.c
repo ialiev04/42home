@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:51:32 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/04/14 18:57:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/04/23 12:41:15 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	error_message(int error_code)
 	if (error_code == 1)
 		ft_printf();
 	if (error_code == 2)
-		ft_printf()
+		ft_printf();
 	// room for errors
-	exit();
+	exit(1);
 }
 
 void	validate_input(int ac, char **av)
 {
-	char *last_dot;
+	char	*last_dot;
 
 	if (ac != 2)
 		error_message(1);
@@ -43,6 +43,11 @@ void	validate_input(int ac, char **av)
 
 int	main(int ac, char **av)
 {
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (1);
 	validate_input(ac, av);
 	init_map(ac, av);
 

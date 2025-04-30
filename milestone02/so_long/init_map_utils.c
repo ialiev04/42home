@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:24:02 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/04/17 17:24:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/04/23 11:08:17 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	is_map_rectangular(char *av)
 	if (fd < 0)
 		error_message(3);
 	line = get_next_line(fd);
-	if(!line)
+	if (!line)
 	{
 		close(fd);
 		error_message(3);
