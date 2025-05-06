@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:40 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/04/30 18:23:32 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/06 18:26:55 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	error_code(int code)
 	if (code == 0)
 		ft_printf("Error code 0:\n	invalid input");
 	else if (code == 1)
+	
 	else if (code == 2)
 	return (1);
 }
