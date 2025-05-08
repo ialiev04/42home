@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:40 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/07 22:39:46 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/08 15:46:29 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int	main(int ac, char **av)
 		else
 			sort_stack(&a, &b);		//todo
 	}
-	free_all();						//todo
+	free_all();						//todo (if ac = 2, av might be allocated mem)
 	return (1);
 }

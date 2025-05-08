@@ -6,11 +6,27 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:16 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/08 14:46:51 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/08 15:47:03 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_syntax(char *str)
+{
+	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		str++;
+	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
+		str++;
+	if (*str == '\0')
+		return (0);
+	else
+		return (1);
+}
 
 long	ft_atol(char *str)
 {
@@ -27,7 +43,7 @@ long	ft_atol(char *str)
 			is_pos = -1;
 		str++;
 	}
-	while (*str >= 0 && *str <= 9)
+	while (*str >= '0' && *str <= '9')
 	{
 		ret = ret * 10 + (*str - '0');
 		str++;
@@ -66,17 +82,17 @@ void	stack_a(t_stack **a, char **av, int ac)
 	long	num;
 
 	i = 0;
-	if (ac == 2 && ft_strncmp(*av, 'push_swap', 10)) //if ac == 2 no need, if ac > 2 av[0] == 'push_swap', maybe renew name
+	if (ac == 2 && ft_strncmp(*av, './push_swap', 12)) //if ac == 2 no need. if ac > 2 av[0] == 'push_swap', maybe renew name
 		i++;
 	while(av[i])
 	{
-		if (check_syntax(av[i]))		//todo
-			free_error();				//todo
+		if (check_syntax(av[i]))
+			free_list(a);				//todo
 		num = ft_atol(av[i]);			
 		if (num > INT_MAX || num < INT_MIN)
-			free_error();
-		if(no_duplicates(a[0]))				//todo
-			free_error();
+			free_list(a);
+		if(no_duplicates(*a, num) == 1)
+			free_list(a);
 		add_node(a, (int)num);
 		i++;
 	}

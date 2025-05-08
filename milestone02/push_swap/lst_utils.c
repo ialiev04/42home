@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/08 14:51:16 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/08 15:50:54 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ t_stack	*last_node(t_stack *first)
 	return (ret);
 }
 
-int	(t_stack a)
+int	no_duplicates(t_stack *a, int num)
 {
-
+	while(a)
+	{
+		if (num == a->number)
+			return (1);
+		a = a->next;
+	}
+	return (0);
 }
