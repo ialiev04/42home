@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/11 04:18:32 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/20 13:28:46 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_stack	*ret;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
-	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
+	while (n-- > 0)
 	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
+		if ((int)(*ptr1 != *ptr2))
+			return (*ptr1 - *ptr2);
+		ptr1++;
+		ptr2++;
 	}
 	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
 }

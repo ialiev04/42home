@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/12 11:53:32 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/13 17:49:37 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_stack	*ret;
+	char	c;
 
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
-	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
+	if (n == -2147483648)
 	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+	{
+		c = n + 48;
+		write(fd, &c, 1);
+	}
 }

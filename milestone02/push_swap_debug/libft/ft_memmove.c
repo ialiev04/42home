@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/10 18:02:52 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/20 13:54:28 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_stack	*ret;
+	unsigned char	*dest;
+	unsigned char	*sauce;
+	size_t			i;
 
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
-	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
+	if (!src && !dst)
+		return (NULL);
+	dest = (unsigned char *) dst;
+	sauce = (unsigned char *) src;
+	i = 0;
+	if (dst > src)
 	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
+		while (len-- > 0)
+			dest[len] = sauce[len];
 	}
-	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
+	else
+	{
+		while (i < len)
+		{
+			dest[i] = sauce[i];
+			i++;
+		}
+	}
+	return (dst);
 }

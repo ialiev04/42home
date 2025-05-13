@@ -1,0 +1,8 @@
+alte libft ersetzen mit neuer makefile aus printf final.
+printf umschreiben, damit ohne libft auskommt.
+
+
+
+mögl 1:
+./push_swap 12 323 532 	23				-> not allocated
+./push_swap "123 432 64 123545 		34" -> allocated

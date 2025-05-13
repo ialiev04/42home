@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:31 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:10:20 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/13 17:03:48 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,10 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+int		main(int ac, char **av);
+char	**split(char *s, char c);
+void	stack_a(t_stack **a, char **av, int ac);
+t_stack	*last_node(t_stack *first);
+int	no_duplicates(t_stack *a, int num);
 
 #endif

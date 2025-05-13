@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/12 11:38:17 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/20 13:31:10 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+void	ft_putchar_fd(char c, int fd)
 {
-	t_stack	*ret;
-
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
-	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
-	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
+	write(fd, &c, 1);
+	return ;
 }

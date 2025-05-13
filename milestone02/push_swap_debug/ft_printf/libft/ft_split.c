@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 18:25:48 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:02:03 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/12 21:16:28 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/13 17:48:16 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 static int	ft_wordct(char *s, char c)
 {
@@ -74,16 +74,16 @@ static void	*ft_free_split(char **ret, unsigned int how_many)
 	return (NULL);
 }
 
-char	**split(char *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char			**ret;
 	unsigned int	words;
 	unsigned int	i;
 	unsigned int	j;
 
-	words = ft_wordct(s, c);
-	if (words < 1)		// not sure lol
-		exit(ft_printf("no words lol"));	//error_code(1);
+	if (!s)
+		return (NULL);
+	words = ft_wordct((char *)s, c);
 	ret = ft_calloc(words + 1, sizeof(char *));
 	if (ret == NULL)
 		return (NULL);

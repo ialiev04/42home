@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/11 03:57:10 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/11 03:57:10 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_stack	*ret;
+	unsigned char	*ret;
 
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
-	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
+	ret = (unsigned char *)s;
+	while (n-- > 0)
 	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
+		if (*ret == (unsigned char)c)
+			return (ret);
+		ret++;
 	}
-	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
+	return (NULL);
 }

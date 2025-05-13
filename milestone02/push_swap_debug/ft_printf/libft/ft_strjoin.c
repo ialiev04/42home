@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/12 10:29:07 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/12 11:52:20 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_stack	*ret;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+	char	*ret;
 
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
-	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	ret = malloc (s1_len + s2_len + 1);
+	if (ret == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
+		ret[i] = s1[i];
+		i++;
 	}
-	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
+	i = 0;
+	while (s2[i])
+	{
+		ret[s1_len + i] = s2[i];
+		i++;
+	}
+	ret[s1_len + s2_len] = '\0';
+	return (ret);
 }

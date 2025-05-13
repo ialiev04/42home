@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:16 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:10:42 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/13 17:03:29 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ void	stack_a(t_stack **a, char **av, int ac)
 	while (av[i])
 	{
 		if (check_syntax(av[i]) == 1)
-			free_list(a);			//todo
+			exit(ft_printf("syntax error"));	//free_list(a);				//todo
 		num = ft_atol(av[i]);
 		if (num > INT_MAX || num < INT_MIN)
-			free_list(a);
+			exit(ft_printf("num too big")); //free_list(a);
 		if (no_duplicates(*a, num) == 1)
-			free_list(a);
+			exit(ft_printf("dupes")); //free_list(a);
 		add_node(a, (int)num);
 		i++;
 	}

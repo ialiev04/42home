@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 16:06:46 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/11 21:07:43 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/03/12 11:53:03 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*last_node(t_stack *first)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_stack	*ret;
+	unsigned char	*ret;
+	size_t			i;
 
-	ret = first;
-	while (ret->next != NULL)
-		ret = ret->next;
+	if (count == 0 || size == 0)
+		return (malloc(0));
+	if (count != 0 && (SIZE_MAX / count) < size)
+		return (NULL);
+	ret = malloc(count * size);
+	if (ret == NULL)
+		return (NULL);
+	i = 0;
+	while (i < (count * size))
+		((char *)ret)[i++] = 0;
 	return (ret);
-}
-
-int	no_duplicates(t_stack *a, int num)
-{
-	while (a)
-	{
-		if (num == a->number)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
-
-void	free_list(t_stack a)
-{
-
 }
