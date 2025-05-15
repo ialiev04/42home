@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:16 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/14 13:29:01 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:53:15 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	add_node(t_stack **a, int n)
 	t_stack	*last;
 
 	if (!a)
-		return (1);		//dont like
+		return (1);
 	node = malloc(sizeof(t_stack));
 	if (!node)
 		return (1);

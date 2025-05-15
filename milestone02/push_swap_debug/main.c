@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:40 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:09:01 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:26:43 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int	main(int ac, char **av)
 	if (ac == 2)
 		av = split(av[1], ' ');
 	stack_a(&a, av, ac);			//todo
+	while (a)
+	{
+		ft_printf("%d\n", a->number);
+		a = a->next;
+	}
 	return (0);
 	// if (!stack_sorted(a))			//todo
 	// {

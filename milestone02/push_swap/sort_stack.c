@@ -6,7 +6,13 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:45:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/06 19:45:54 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/15 12:09:13 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+void sort_stacks(t_stack **a, t_stack **b)
+{
+
+}

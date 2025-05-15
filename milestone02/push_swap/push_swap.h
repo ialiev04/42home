@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:31 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:10:20 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:17:11 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ typedef struct s_stack
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
-
 
 #endif

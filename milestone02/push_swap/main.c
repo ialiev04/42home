@@ -6,16 +6,16 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:40 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/14 13:47:36 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/15 12:54:52 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	free_all(t_stack **a, char **av, int mem_alloc)
+int	free_all(t_stack **a, char **av, int av_allocated)
 {
 	free_list(a);
-	if (mem_alloc == 1)
+	if (av_allocated == 1)
 	{
 		while (av)
 		{
@@ -40,26 +40,26 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		mem_alloc;
+	int		av_allocated;
 
 	a = NULL;
 	b = NULL;
-	mem_alloc = 0;
+	av_allocated = 0;
 	if (ac < 2 || (ac == 2 && !*av[1]))
 		return (error_code(0));
 	if (ac == 2)
-		av = split(av[1], ' ', &mem_alloc);
+		av = split(av[1], ' ', &av_allocated);
 	if (stack_a(&a, av, ac) == 1)
-		return (free_all(&a, av, mem_alloc));
-	if (stack_sorted(&a) = 1)
+		return (free_all(&a, av, av_allocated));
+	if (stack_sorted(&a) == 1)
 	{
 		if (stack_len(a) == 2)
-			sa(&a);					//todo
+			sa(&a, false);					//todo 2nd
 		else if (stack_len(a) == 3)
-			sort_three(&a);			//todo
+			sort_three(&a);			//todo 3rd
 		else
-			sort_stack(&a, &b);		//todo
+			sort_stacks(&a, &b);		//todo 1st
 	}
-	free_all(&a, av, mem_alloc);
+	free_all(&a, av, av_allocated);
 	return (0);
 }

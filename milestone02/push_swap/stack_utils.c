@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_sorted.c                                     :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 19:44:26 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/14 13:40:02 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/05/06 19:44:50 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/05/14 18:18:23 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	stack_len(t_stack **a)
+{
+	int		len;
+	t_stack	stack;
+
+	len = 0;
+	stack = *a;
+	while (stack)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
+}
 
 int	stack_sorted(t_stack	**a)
 {
