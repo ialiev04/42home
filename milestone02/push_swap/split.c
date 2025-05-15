@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 18:25:48 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/14 12:51:10 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/15 14:58:58 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ char	**split(char *s, char c, int *mem_alloc)
 	unsigned int	j;
 
 	words = ft_wordct(s, c);
-	if (words < 1)		// not sure lol
-		exit(ft_printf("no words lol"));	//error_code(1);
+	if (words < 1)
+		exit(0);
 	ret = ft_calloc(words + 1, sizeof(char *));
 	if (ret == NULL)
 		return (NULL);

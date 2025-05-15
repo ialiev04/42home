@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:36:06 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/15 14:11:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/15 14:48:56 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static void	reverse_rotate(t_stack **head)
 {
