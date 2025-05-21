@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:35:28 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/15 14:50:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/21 18:11:27 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,21 @@ static void swap(t_stack **head)
 	(*head)->prev = NULL;
 }
 
-void	sa(t_stack **a, bool checker)
+void	sa(t_stack **a)
 {
 	swap(a);
-	if (checker == false)
-		write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 }
 
-void	sb(t_stack **b, bool checker)
+void	sb(t_stack **b)
 {
 	swap(b);
-	if (checker == false)
-		write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **a, t_stack **b, bool checker)
+void	ss(t_stack **a, t_stack **bool)
 {
 	swap(a);
 	swap(b);
-	if (checker == false)
-		write(1, "ss\n", 3);
+	write(1, "ss\n", 3);
 }

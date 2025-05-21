@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:20:01 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/15 12:04:00 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:42:48 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_stack	*find_biggest(t_stack *a)
 {
 	t_stack	*biggest;
-	
+
 	biggest = a;
 	while (*a)
 	{
@@ -26,7 +26,21 @@ t_stack	*find_biggest(t_stack *a)
 	return (biggest);
 }
 
-void sort_three(t_stack **a)
+t_stack	*find_smallest(t_stack *a)
+{
+	t_stack	*smallest;
+
+	smallest = a;
+	while (*a)
+	{
+		if (smallest->number < a->number)
+			smallest = a;
+		a = a->next;
+	}
+	return (smallest);
+}
+
+void	sort_three(t_stack **a)
 {
 	t_stack	*biggest;
 

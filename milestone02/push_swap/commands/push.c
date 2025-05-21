@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:35:44 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/15 14:48:57 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/21 18:09:51 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ static void	push(t_stack **src, t_stack **dst)
 	}
 }
 
-void	pa(t_stack **a, t_stack **b, bool checker)
+void	pa(t_stack **a, t_stack **b)
 {
 	if (!(*a) || !a)
 		return ;
 	push(a, b);
-	if (!checker)
-		write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **a, t_stack **b, bool checker)
+void	pb(t_stack **a, t_stack **b)
 {
 	if (!(*b) || !b)
 		return ;
 	push(b, a);
-	if (!checker)
-		write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }
