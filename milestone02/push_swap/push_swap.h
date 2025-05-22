@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:31 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/21 18:47:17 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 15:31:34 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack
 	int				number;
 	int				pos;
 	int				push_cost;
+	bool			below_median;
 	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;

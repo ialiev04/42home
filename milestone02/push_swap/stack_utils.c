@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/14 18:18:23 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 14:37:22 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	stack_len(t_stack **a)
 	return (len);
 }
 
-int	stack_sorted(t_stack	**a)
+int	stack_sorted(t_stack **a)
 {
-	t_stack *current;
+	t_stack	*current;
 	t_stack	*next;
-	
+
 	current = *a;
 	next = current->next;
 	while (current)
