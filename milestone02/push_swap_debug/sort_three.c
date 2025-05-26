@@ -6,36 +6,36 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:20:01 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/22 19:58:30 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/26 15:31:42 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*find_biggest(t_stack **a)
+t_stack	*find_biggest(t_stack *a)
 {
 	t_stack	*biggest;
 
-	biggest = *a;
-	while (*a)
+	biggest = a;
+	while (a)
 	{
-		if (biggest->number < (*a)->number)
-			biggest = (*a);
-		(*a) = (*a)->next;
+		if (biggest->number < a->number)
+			biggest = a;
+		a = a->next;
 	}
 	return (biggest);
 }
 
-t_stack	*find_smallest(t_stack **a)
+t_stack	*find_smallest(t_stack *a)
 {
 	t_stack	*smallest;
 
-	smallest = *a;
-	while (*a)
+	smallest = a;
+	while (a)
 	{
-		if (smallest->number < (*a)->number)
-			smallest = (*a);
-		(*a) = (*a)->next;
+		if (smallest->number < a->number)
+			smallest = a;
+		a = a->next;
 	}
 	return (smallest);
 }
@@ -44,7 +44,7 @@ void	sort_three(t_stack **a)
 {
 	t_stack	*biggest;
 
-	biggest = find_biggest(a);
+	biggest = find_biggest(*a);
 	if (biggest == *a)
 		ra(a);
 	else if ((*a)->next == biggest)

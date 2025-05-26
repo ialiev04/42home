@@ -16,19 +16,17 @@ BOBJECTS = $(BSOURCES:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-AR = ar
-ARFLAGS = -rcs
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(AR) $(ARFLAGS) $@ $^
+	$(AR) -r $@ $?
 
 bonus: $(OBJECTS) $(BOBJECTS)
-		$(AR) $(ARFLAGS) $(NAME) $^
+		$(AR) -r $(NAME) $?
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -c $(CFLAGS) $?
 
 clean:
 	rm -f $(OBJECTS) $(BOBJECTS)
@@ -39,3 +37,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re bonus
+

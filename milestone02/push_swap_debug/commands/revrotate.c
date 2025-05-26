@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:36:06 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/22 17:57:42 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/26 19:16:23 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static void	reverse_rotate(t_stack **head)
 	if (head == NULL || *head == NULL)
 		return ;
 	last = last_node(*head);
-	(*head)->prev = last;
 	last->prev->next = NULL;
+	last->next = *head;
 	last->prev = NULL;
-	last->next = (*head);
+	*head = last;
+	last->next->prev = last;
 }
 
 void	rra(t_stack **a)

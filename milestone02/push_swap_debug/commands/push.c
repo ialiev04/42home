@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:35:44 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/22 19:38:14 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/26 16:22:21 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	push(t_stack **src, t_stack **dst)
 {
 	t_stack	*to_push;
-	
+
 	if (!src || !(*src))
 		return ;
 	to_push = *src;
@@ -32,7 +32,7 @@ static void	push(t_stack **src, t_stack **dst)
 	{
 		to_push->next = *dst;
 		to_push->next->prev = to_push;
-		*dst = to_push; 
+		*dst = to_push;
 	}
 }
 
@@ -41,7 +41,7 @@ void	pb(t_stack **a, t_stack **b)
 	if (!(*a) || !a)
 		return ;
 	push(a, b);
-	write(1, "pa\n", 3);
+	write(1, "pb\n", 3);
 }
 
 void	pa(t_stack **a, t_stack **b)
@@ -49,5 +49,5 @@ void	pa(t_stack **a, t_stack **b)
 	if (!(*b) || !b)
 		return ;
 	push(b, a);
-	write(1, "pb\n", 3);
+	write(1, "pa\n", 3);
 }
