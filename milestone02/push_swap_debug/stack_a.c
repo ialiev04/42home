@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:16 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:03:29 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 19:29:52 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ long	ft_atol(char *str)
 	return (ret * is_pos);
 }
 
-static void	add_node(t_stack **a, int n)
+static int	add_node(t_stack **a, int n)
 {
 	t_stack	*node;
 	t_stack	*last;
 
 	if (!a)
-		return ;		//dont like
+		return (1);
 	node = malloc(sizeof(t_stack));
 	if (!node)
-		return ;		//dont like
+		return (1);
 	node->next = NULL;
 	node->number = n;
 	if (!(*a))
@@ -74,26 +74,38 @@ static void	add_node(t_stack **a, int n)
 		last->next = node;
 		node->prev = last;
 	}
+	return (0);
 }
 
-void	stack_a(t_stack **a, char **av, int ac)
+int	stack_a(t_stack **a, char **av, int ac)
 {
 	int		i;
 	long	num;
 
 	i = 0;
-	if (ac > 2 && ft_strncmp(*av, "./push_swap", 12)) //if ac == 2 no need. if ac > 2 av[0] == 'push_swap', maybe renew name
+	if (*av == NULL)
+		return (1);
+	if (ac > 2)
 		i++;
-	while (av[i])
+	while (av[i] != NULL)
 	{
 		if (check_syntax(av[i]) == 1)
-			exit(ft_printf("syntax error"));	//free_list(a);				//todo
+		{
+			ft_printf("syntax");
+			return (1);
+		}
 		num = ft_atol(av[i]);
-		if (num > INT_MAX || num < INT_MIN)
-			exit(ft_printf("num too big")); //free_list(a);
-		if (no_duplicates(*a, num) == 1)
-			exit(ft_printf("dupes")); //free_list(a);
-		add_node(a, (int)num);
+		if (num > INT_MAX || num < INT_MIN || no_duplicates(*a, num) == 1)
+		{	
+			ft_printf("atol");
+			return (1);
+		}
+		if (add_node(a, (int)num) == 1)
+		{	
+			ft_printf("add_node");
+			return (1);
+		}
 		i++;
 	}
+	return (0);
 }

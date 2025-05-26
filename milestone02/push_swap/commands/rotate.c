@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:35:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/21 18:10:43 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 18:35:45 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static void	rotate(t_stack **head)
 {
@@ -19,7 +19,7 @@ static void	rotate(t_stack **head)
 	if (head == NULL || *head == NULL)
 		return ;
 	last = last_node(*head);
-	*head = *head->next;
+	*head = (*head)->next;
 	(*head)->prev->prev = last;
 	(*head)->prev->next = NULL;
 	last->next = (*head)->prev;

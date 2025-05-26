@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:40 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/21 18:22:27 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 19:05:26 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	free_all(t_stack **a, char **av, int ac)
 		}
 	}
 	ft_printf("Error\n");
-	exit();
+	exit(1);
 }
 
 int	main(int ac, char **av)
@@ -34,7 +34,6 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	av_allocated = 0;
 	if (ac < 2 || (ac == 2 && !*av[1]))
 		return (ft_printf("Error\n"));
 	if (ac == 2)
@@ -43,9 +42,9 @@ int	main(int ac, char **av)
 		return (free_all(&a, av, ac));
 	if (stack_sorted(&a) == 1)
 	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
+		if (stack_len(&a) == 2)
+			sa(&a);
+		else if (stack_len(&a) == 3)
 			sort_three(&a);
 		else
 			sort_stacks(&a, &b);

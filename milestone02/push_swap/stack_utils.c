@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/22 14:37:22 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 18:35:24 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	stack_len(t_stack **a)
 {
 	int		len;
-	t_stack	stack;
+	t_stack	*stack;
 
 	len = 0;
 	stack = *a;

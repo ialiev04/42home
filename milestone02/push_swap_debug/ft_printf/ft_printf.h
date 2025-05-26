@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:39:23 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/26 13:10:31 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/13 17:19:01 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 // librarys
-# include "libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>

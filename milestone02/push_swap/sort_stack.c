@@ -6,29 +6,29 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:45:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/22 17:54:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 19:32:19 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_both(t_stack	*cheapest, t_stack **a, t_stack **b)
+static void	rotate_both(t_stack	*cheapest, t_stack **a, t_stack **b)
 {
 	if (!(*a) || !(*b))
 		return ;
-	while (cheapest->prev != NULL && cheapest->target-> != NULL)
+	while (cheapest->prev != NULL && cheapest->target->prev != NULL)
 		rr(a, b);
 }
 
-void	rev_rotate_both(t_stack	*cheapest, t_stack **a, t_stack **b)
+static void	rev_rotate_both(t_stack	*cheapest, t_stack **a, t_stack **b)
 {
 	if (!(*a) || !(*b))
 		return ;
-	while (cheapest->prev != NULL && cheapest->target-> != NULL)
+	while (cheapest->prev != NULL && cheapest->target->prev != NULL)
 		rrr(a, b);
 }
 
-void	finish_rotation(t_stack	*cheapest, t_stack **stack, char format)
+static void	finish_rotation(t_stack	*cheapest, t_stack **stack, char format)
 {
 	if (!(*stack))
 		return ;
@@ -53,7 +53,7 @@ void	finish_rotation(t_stack	*cheapest, t_stack **stack, char format)
 	}
 }
 
-void	move_node(t_stack *cheapest, t_stack **a, t_stack **b)
+static void	move_node(t_stack *cheapest, t_stack **a, t_stack **b)
 {
 	if (cheapest->below_median && cheapest->target->below_median)
 		rotate_both(cheapest, a, b);
@@ -79,5 +79,6 @@ void	sort_stacks(t_stack **a, t_stack **b)
 		calc_cost(a, b);
 		cheapest = find_cheapest(b);
 		move_node(cheapest, a, b);
+		pa(a, b);
 	}
 }

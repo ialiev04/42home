@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:16 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/15 14:57:53 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/22 19:04:54 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	stack_a(t_stack **a, char **av, int ac)
 	i = 0;
 	if (*av == NULL)
 		return (1);
-	if (ac > 2 && ft_strncmp(*av, "./push_swap", 12)) //if ac == 2 no need. if ac > 2 av[0] == 'push_swap', maybe renew name
+	if (ac > 2 && ft_strncmp(*av, "./push_swap", 12))
 		i++;
 	while (av[i])
 	{
