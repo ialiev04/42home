@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:50:25 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/14 13:07:35 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/30 15:31:37 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	no_duplicates(t_stack *a, int num)
 void	free_list(t_stack **a)
 {
 	t_stack	*next;
-	t_stack *current;
+	t_stack	*current;
 
 	current = *a;
 	while (current)

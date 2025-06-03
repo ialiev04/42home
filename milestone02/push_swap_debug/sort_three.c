@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:20:01 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/26 15:31:42 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/05/30 15:52:40 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_stack	*find_smallest(t_stack *a)
 	smallest = a;
 	while (a)
 	{
-		if (smallest->number < a->number)
+		if (smallest->number > a->number)
 			smallest = a;
 		a = a->next;
 	}
