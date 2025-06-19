@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 18:25:48 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/16 21:08:34 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/06/19 19:21:57 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ char	**split(char *s, char c)
 	unsigned int	j;
 
 	words = ft_wordct(s, c);
-	if (words < 1)
-		exit(0);
 	ret = ft_calloc(words + 1, sizeof(char *));
 	if (ret == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:16 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/16 21:08:37 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/06/19 18:59:09 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ int	check_syntax(char *str)
 {
 	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
 		str++;
-	if (*str == '-' || *str == '+')
+	if ((*str == '-' || *str == '+'))
+	{
 		str++;
+		if (!(*str >= '0' && *str <= '9'))
+			return (1);
+	}
 	while (*str >= '0' && *str <= '9')
 		str++;
 	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
@@ -92,7 +96,8 @@ int	stack_a(t_stack **a, char **av, int ac)
 		if (check_syntax(av[i]) == 1)
 			return (1);
 		num = ft_atol(av[i]);
-		if (num > INT_MAX || num < INT_MIN || no_duplicates(*a, num) == 1)
+		if (num > 2147483647 || num < -2147483648
+			|| no_duplicates(*a, num) == 1)
 			return (1);
 		if (add_node(a, (int)num) == 1)
 			return (1);

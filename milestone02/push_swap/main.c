@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:40 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/19 15:51:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/06/19 19:21:35 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	free_all(t_stack **a, char **av, int ac, bool error)
 		free(tmp);
 	}
 	if (error == true)
+	{
 		fprintf(stderr, "Error\n");
+		exit(fprintf(stderr, "Error\n"));
+	}
 	return ;
 }
 
@@ -39,8 +42,10 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	if (ac < 2 || (ac == 2 && !*av[1]))
-		return (ft_printf("Error 1\n"));
+	if (ac < 2)
+		return (0);
+	if ((ac == 2 && !*av[1]))
+		return (fprintf(stderr, "Error\n"));
 	if (ac == 2)
 		av = split(av[1], ' ');
 	if (stack_a(&a, av, ac) == 1)
