@@ -29,10 +29,14 @@ $(MLX_LIBFILE):
 clean:
 	$(RM) $(OBJS)
 
+mlxclean:
+	$(RM) $(OBJS)
+	$(RM) $(NAME)
+
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) -r $(MLX_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean mlxclean re
