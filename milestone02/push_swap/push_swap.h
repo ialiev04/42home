@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:31 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/26 19:41:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/06/29 16:10:42 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 // libs
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
-# include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
 # include <limits.h>

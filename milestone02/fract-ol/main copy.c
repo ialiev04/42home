@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main copy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:38:47 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/29 16:49:29 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/06/29 16:38:06 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/fractol.h"
 
-static t_fractol	fractol_init(char *name)
+void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
-	t_fractol	fractol;
-	
-	fractol->mlx = mlx_init(WIDTH, HEIGHT, name, true);
-	if (!fractol->mlx)
-		exit();
-	fractol->img = mlx_new_image(fractol->mlx, WIDTH, HEIGHT);
-	if (!fractol->img)
-		exit();
-	fractol->name = name;
-	return (fractol);
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(param);
 }
 
-int	main(int ac, char **av)
+int	maint(int ac, char **av)
 {
-	t_fractol	fractol;
-	
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+
 	if ((ac == 2 && !ft_strncmp(av[1], "mandelbrot", 10))
 		|| (ac == 4 && ft_strncmp(av [1], "julia", 5)))
 	{
-		fractol = fractol_init(av[1]);
-		fractol_render()
+		t_fractol = mlx_init()
 	}
 	else
 		error_message() //todo
+	
+	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	if (!mlx)
+		return (1);
+	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	if (!img)
+		return (1);
+	mlx_put_pixel(img, 100, 100, COLOR_PINK);
+	mlx_image_to_window(mlx, img, 0, 0);
+	mlx_loop(mlx);
 	return (0);
 }
