@@ -7,7 +7,10 @@ MLX_INC := $(MLX_DIR)/include
 MLX_LIB := $(MLX_DIR)/build
 MLX_LIBFILE := $(MLX_LIB)/libmlx42.a
 
-SRCS := main.c
+SRCS :=	calc_mandel.c \
+		fractol_render.c \
+		libft/ft_strncmp.c
+
 OBJS := $(SRCS:.c=.o)
 
 all: $(MLX_LIBFILE) $(NAME)

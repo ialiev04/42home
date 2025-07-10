@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:25:37 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/29 16:46:55 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:15:02 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# define WIDTH 512
-# define HEIGHT 512
+# define WIDTH 800
+# define HEIGHT 800
+
+# define MIN_REAL		-2.0
+# define MAX_REAL		1.0
+# define MIN_IMAG		-1.5
+# define MAX_IMAG		1.5
+# define MAX_ITER		1000
 
 # define COLOR_WHITE	0xFFFFFFFF
 # define COLOR_BLACK	0x000000FF
@@ -39,21 +45,24 @@
 # define COLOR_LIME		0xBFFF00FF
 # define COLOR_SKYBLUE	0x87CEEBFF
 
-typedef struct	s_pixel
+typedef struct s_pixel
 {
-	void	*img_ptr;
-	char	*current_ptr;
-	int		bits;
+	double	real_part;
+	double	imag_part;
+	int		real_coord;
+	int		imag_coord;
 }	t_pixel;
 
-typedef struct	s_fractol
+typedef struct s_fractol
 {
 	char	*name;
 	void	*mlx;
 	void	*img;
-	t_pixel	pixel;
+	t_pixel	*pixel;
 }	t_fractol;
 
-
+void	fractol_render(t_fractol *fractol);
+void	find_and_display(int x, int y, t_pixel *pixel, t_fractol *fractol);
+void	calc_mandel(t_pixel *pixel, t_fractol *fractol);
 
 #endif
