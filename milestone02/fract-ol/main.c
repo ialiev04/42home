@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:38:47 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 03:57:48 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 16:44:28 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_fractol	*fractol_init(char *name)
 	pixel->max_cd_r = 2.0;
 	pixel->min_cd_i = -2.0;
 	pixel->max_cd_i = 2.0;
+	pixel->max_iter = 100;
 	fractol->pixel = pixel;
 	return (fractol);
 }
@@ -56,12 +57,12 @@ int	main(int ac, char **av)
 {
 	t_fractol	*fractol;
 
+	
 	if ((ac == 2 && !ft_strncmp(av[1], "mandelbrot", 10))
 		|| (ac == 4 && ft_strncmp(av [1], "julia", 5)))
 	{
 		fractol = fractol_init(av[1]);
 		fractol_render(fractol);
-		printf("came here\n");
 		event_handler(fractol);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 01:57:22 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 04:10:24 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 16:53:23 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ static void	my_key(mlx_key_data_t event, void *param)
 		return ;
 	if (event.key == MLX_KEY_ESCAPE)
 		clean_exit(fractol);
+	else if (event.key == MLX_KEY_M || event.key == MLX_KEY_P)
+	{
+		if (event.key == MLX_KEY_M )
+			fractol->pixel->max_iter *= 0.7;
+		else
+			fractol->pixel->max_iter *= 1.3;
+		fractol_render(fractol);
+	}
 	else
 	{
 		handle_movement_keys(event, fractol);
