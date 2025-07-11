@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:45:20 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/10 16:14:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 04:39:26 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,30 @@ void	display_pixel(int i, t_pixel *p, t_fractol *f)
 {
 	if (i == MAX_ITER)
 		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_BLACK);
+	else if (i <= 5)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_2);
 	else if (i <= 10)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_RED);
-	else if (i <= 20)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_PURPLE);
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_3);
+	else if (i <= 15)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_4);
+	else if (i <= 25)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_5);
 	else if (i <= 40)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_PINK);
-	else if (i <= 60)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_ORANGE);
-	else if (i <= 80)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_MAGENTA);
-	else if (i <= 100)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_LIME);
-	else if (i <= 200)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_GREEN);
-	else
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_BLUE);
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_6);
+	else if (i <= 45)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_7);
+	else if (i <= 50)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_8);
+	else if (1 <= 55)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_9);
+	else if (1 <= 60)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_10);
+	else if (1 <= 65)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_11);
+	else if (1 <= 70)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_12);
+	else if (1 <= 75)
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_13);
 }
 
 void	calc_mandel(t_pixel *pixel, t_fractol *fractol)
@@ -56,23 +64,4 @@ void	calc_mandel(t_pixel *pixel, t_fractol *fractol)
 		i++;
 	}
 	display_pixel(i, pixel, fractol);
-}
-int32_t	main(void)
-{
-	t_fractol	fractol;
-	t_pixel		pixel;
-
-	fractol.mlx = mlx_init(WIDTH, HEIGHT, "Mandelbrot Viewer", false);
-	if (!fractol.mlx)
-		return (EXIT_FAILURE);
-	fractol.img = mlx_new_image(fractol.mlx, WIDTH, HEIGHT);
-	if (!fractol.img)
-		return (EXIT_FAILURE);
-	fractol.pixel = &pixel;
-	fractol.name = "mandelbrot";
-	fractol_render(&fractol);
-	mlx_image_to_window(fractol.mlx, fractol.img, 0, 0);
-	mlx_loop(fractol.mlx);
-	mlx_terminate(fractol.mlx);
-	return (EXIT_SUCCESS);
 }

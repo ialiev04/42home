@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:25:37 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/10 16:15:02 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 04:36:58 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,23 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH			1000
+# define HEIGHT			1000
+# define MAX_ITER		100
 
-# define MIN_REAL		-2.0
-# define MAX_REAL		1.0
-# define MIN_IMAG		-1.5
-# define MAX_IMAG		1.5
-# define MAX_ITER		1000
-
-# define COLOR_WHITE	0xFFFFFFFF
 # define COLOR_BLACK	0x000000FF
-# define COLOR_RED		0xFF0000FF
-# define COLOR_GREEN	0x00FF00FF
-# define COLOR_BLUE		0x0000FFFF
-# define COLOR_YELLOW	0xFFFF00FF
-# define COLOR_CYAN		0x00FFFFFF
-# define COLOR_MAGENTA	0xFF00FFFF
-# define COLOR_GRAY		0x808080FF
-# define COLOR_ORANGE	0xFFA500FF
-# define COLOR_PINK		0xFFC0CBFF
-# define COLOR_PURPLE	0x800080FF
-# define COLOR_BROWN	0xA52A2AFF
-# define COLOR_LIME		0xBFFF00FF
-# define COLOR_SKYBLUE	0x87CEEBFF
+# define COLOR_2		0xFF800080
+# define COLOR_3		0xFFFF0080
+# define COLOR_4		0xFF0080FF
+# define COLOR_5		0xFFFF8000
+# define COLOR_6		0xFF4000FF
+# define COLOR_7		0xFF00FF40
+# define COLOR_8		0xFF8040FF
+# define COLOR_9		0xFFFF4080
+# define COLOR_10		0xFF4080FF
+# define COLOR_11		0xFFFF8040
+# define COLOR_12		0xFF0040FF
+# define COLOR_13		0xFFFF4000
 
 typedef struct s_pixel
 {
@@ -51,6 +44,10 @@ typedef struct s_pixel
 	double	imag_part;
 	int		real_coord;
 	int		imag_coord;
+	double	min_cd_r;
+	double	min_cd_i;
+	double	max_cd_r;
+	double	max_cd_i;
 }	t_pixel;
 
 typedef struct s_fractol
@@ -64,5 +61,8 @@ typedef struct s_fractol
 void	fractol_render(t_fractol *fractol);
 void	find_and_display(int x, int y, t_pixel *pixel, t_fractol *fractol);
 void	calc_mandel(t_pixel *pixel, t_fractol *fractol);
+void	clean_exit(t_fractol *fractol);
+void	event_handler(t_fractol *fractol);
+int		main(int ac, char **av);
 
 #endif
