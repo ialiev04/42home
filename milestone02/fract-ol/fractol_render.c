@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:08:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 02:35:26 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 21:42:07 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	find_and_display(int x, int y, t_pixel *pxl, t_fractol *fractol)
 {
 	pxl->real_part = pxl->min_cd_r + x * (pxl->max_cd_r - pxl->min_cd_r) / WIDTH;
-	pxl->imag_part = pxl->min_cd_i + y * (pxl->max_cd_i  - pxl->min_cd_i) / HEIGHT;
+	pxl->imag_part = pxl->max_cd_i - y * (pxl->max_cd_i - pxl->min_cd_i) / HEIGHT;
 	pxl->real_coord = x;
 	pxl->imag_coord = y;
 	if (!ft_strncmp(fractol->name, "mandelbrot", 10))
 		calc_mandel(pxl, fractol);
-	// else if (!ft_strncmp(fractol->name, "julia", 5))
-	// 	display_julia(pxl);
+	else if (!ft_strncmp(fractol->name, "julia", 5))
+		calc_julia(pxl, fractol);
 }
 
 void	fractol_render(t_fractol *fractol)

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_mandel.c                                      :+:      :+:    :+:   */
+/*   calc_fractol.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:45:20 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 16:45:13 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 20:44:27 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/fractol.h"
+
 void	display_pixel_two(int i, t_pixel *p, t_fractol *f)
 {
 	if (i <= 32)
@@ -88,6 +89,30 @@ void	calc_mandel(t_pixel *pixel, t_fractol *fractol)
 			break ;
 		zi = 2 * zr * zi + pixel->imag_part;
 		zr = zr2 - zi2 + pixel->real_part;
+		i++;
+	}
+	display_pixel(i, pixel, fractol);
+}
+
+void	calc_julia(t_pixel *pixel, t_fractol *fractol)
+{
+	double	zr;
+	double	zi;
+	double	zr2;
+	double	zi2;
+	int		i;
+
+	zr = pixel->real_part;
+	zi = pixel->imag_part;
+	i = 0;
+	while (i < pixel->max_iter)
+	{
+		zr2 = zr * zr;
+		zi2 = zi * zi;
+		if (zr2 + zi2 >= 4.0)
+			break ;
+		zi = 2 * zr * zi + pixel->julia_i;
+		zr = zr2 - zi2 + pixel->julia_r;
 		i++;
 	}
 	display_pixel(i, pixel, fractol);

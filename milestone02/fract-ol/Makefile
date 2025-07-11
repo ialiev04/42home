@@ -8,10 +8,13 @@ MLX_LIB := $(MLX_DIR)/build
 MLX_LIBFILE := $(MLX_LIB)/libmlx42.a
 
 SRCS :=	main.c \
-		calc_mandel.c \
+		utils.c \
+		calc_fractol.c \
 		fractol_render.c \
 		events.c \
-		libft/ft_strncmp.c
+		libft/ft_strncmp.c \
+		libft/ft_atoi.c \
+		libft/ft_strlen.c
 
 OBJS := $(SRCS:.c=.o)
 

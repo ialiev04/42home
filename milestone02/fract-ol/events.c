@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 01:57:22 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 16:53:23 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/12 01:48:20 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void	handle_movement_keys(mlx_key_data_t event, t_fractol *fractol)
 		fractol->pixel->max_cd_r += step_x;
 		fractol->pixel->min_cd_r += step_x;
 	}
-	else if (event.key == MLX_KEY_UP)
+	else if (event.key == MLX_KEY_DOWN)
 	{
 		fractol->pixel->max_cd_i -= step_y;
 		fractol->pixel->min_cd_i -= step_y;
 	}
-	else if (event.key == MLX_KEY_DOWN)
+	else if (event.key == MLX_KEY_UP)
 	{
 		fractol->pixel->max_cd_i += step_y;
 		fractol->pixel->min_cd_i += step_y;
@@ -70,17 +70,19 @@ static void	calculate_zoom_bounds(t_fractol *fractol, int mouse_x, int mouse_y, 
 	double	height;
 	double	mouse_r;
 	double	mouse_i;
+	t_pixel	*p;
 
-	width = fractol->pixel->max_cd_r - fractol->pixel->min_cd_r;
-	height = fractol->pixel->max_cd_i - fractol->pixel->min_cd_i;
-	mouse_r = fractol->pixel->min_cd_r + ((double)mouse_x / WIDTH) * width;
-	mouse_i = fractol->pixel->min_cd_i + ((double)mouse_y / HEIGHT) * height;
+	p = fractol->pixel;
+	width = p->max_cd_r - p->min_cd_r;
+	height = p->max_cd_i - p->min_cd_i;
+	mouse_r = p->min_cd_r + ((double)mouse_x / WIDTH) * width;
+	mouse_i = p->min_cd_i + ((double)(HEIGHT - mouse_y) / HEIGHT) * height;
 	width *= zoom_factor;
 	height *= zoom_factor;
-	fractol->pixel->min_cd_r = mouse_r - ((double)mouse_x / WIDTH) * width;
-	fractol->pixel->max_cd_r = fractol->pixel->min_cd_r + width;
-	fractol->pixel->min_cd_i = mouse_i - ((double)mouse_y / HEIGHT) * height;
-	fractol->pixel->max_cd_i = fractol->pixel->min_cd_i + height;
+	p->min_cd_r = mouse_r - ((double)mouse_x / WIDTH) * width;
+	p->max_cd_r = p->min_cd_r + width;
+	p->min_cd_i = mouse_i - ((double)(HEIGHT - mouse_y) / HEIGHT) * height;
+	p->max_cd_i = p->min_cd_i + height;
 }
 
 static void	my_scroll(double xdelta, double ydelta, void *param)
@@ -95,10 +97,13 @@ static void	my_scroll(double xdelta, double ydelta, void *param)
 	if (ydelta == 0)
 		return ;
 	mlx_get_mouse_pos(fractol->mlx, &mouse_x, &mouse_y);
+	if (mouse_x < 0 || mouse_x >= WIDTH || 
+   		mouse_y < 0 || mouse_y >= HEIGHT)
+   	return;
 	if (ydelta > 0)
-		zoom_factor = 0.8;
-	else
 		zoom_factor = 1.2;
+	else
+		zoom_factor = 0.8;
 	calculate_zoom_bounds(fractol, mouse_x, mouse_y, zoom_factor);
 	fractol_render(fractol);
 }

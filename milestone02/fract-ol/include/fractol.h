@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:25:37 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 16:44:04 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/11 21:55:08 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_pixel
 	double	max_cd_r;
 	double	max_cd_i;
 	int		max_iter;
+	double	julia_r;
+	double	julia_i;
 }	t_pixel;
 
 typedef struct s_fractol
@@ -70,11 +72,15 @@ typedef struct s_fractol
 	t_pixel	*pixel;
 }	t_fractol;
 
-void	fractol_render(t_fractol *fractol);
-void	find_and_display(int x, int y, t_pixel *pixel, t_fractol *fractol);
-void	calc_mandel(t_pixel *pixel, t_fractol *fractol);
-void	clean_exit(t_fractol *fractol);
-void	event_handler(t_fractol *fractol);
-int		main(int ac, char **av);
+void		fractol_render(t_fractol *fractol);
+void		find_and_display(int x, int y, t_pixel *pixel, t_fractol *fractol);
+void		calc_mandel(t_pixel *pixel, t_fractol *fractol);
+void		clean_exit(t_fractol *fractol);
+void		event_handler(t_fractol *fractol);
+double		ft_atof(char *s);
+void		init_julia(char *s1, char *s2, t_fractol *f);
+t_fractol	*fractol_init(char *name);
+void		calc_julia(t_pixel *pixel, t_fractol *fractol);
+int			main(int ac, char **av);
 
 #endif
