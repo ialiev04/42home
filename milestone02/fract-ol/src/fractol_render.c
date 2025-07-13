@@ -6,22 +6,22 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:08:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/11 21:42:07 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/13 18:22:47 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/fractol.h"
+#include "../include/fractol.h"
 
-void	find_and_display(int x, int y, t_pixel *pxl, t_fractol *fractol)
+static void	find_and_display(int x, int y, t_pixel *p, t_fractol *fractol)
 {
-	pxl->real_part = pxl->min_cd_r + x * (pxl->max_cd_r - pxl->min_cd_r) / WIDTH;
-	pxl->imag_part = pxl->max_cd_i - y * (pxl->max_cd_i - pxl->min_cd_i) / HEIGHT;
-	pxl->real_coord = x;
-	pxl->imag_coord = y;
+	p->real_part = p->min_cd_r + x * (p->max_cd_r - p->min_cd_r) / WIDTH;
+	p->imag_part = p->max_cd_i - y * (p->max_cd_i - p->min_cd_i) / HEIGHT;
+	p->real_coord = x;
+	p->imag_coord = y;
 	if (!ft_strncmp(fractol->name, "mandelbrot", 10))
-		calc_mandel(pxl, fractol);
+		calc_mandel(p, fractol);
 	else if (!ft_strncmp(fractol->name, "julia", 5))
-		calc_julia(pxl, fractol);
+		calc_julia(p, fractol);
 }
 
 void	fractol_render(t_fractol *fractol)

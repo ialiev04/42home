@@ -6,13 +6,13 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 01:57:22 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/12 01:48:20 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/13 18:57:14 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/fractol.h"
+#include "../include/fractol.h"
 
-static void	handle_movement_keys(mlx_key_data_t event, t_fractol *fractol)
+void	handle_movement_keys(mlx_key_data_t event, t_fractol *fractol)
 {
 	double	step_x;
 	double	step_y;
@@ -41,20 +41,23 @@ static void	handle_movement_keys(mlx_key_data_t event, t_fractol *fractol)
 	}
 }
 
-static void	my_key(mlx_key_data_t event, void *param)
+void	my_key(mlx_key_data_t event, void *param)
 {
-	t_fractol *fractol = (t_fractol *)param;
-	
+	t_fractol	*fractol;
+
+	fractol = (t_fractol *)param;
 	if (event.action != MLX_PRESS)
 		return ;
 	if (event.key == MLX_KEY_ESCAPE)
-		clean_exit(fractol);
+		clean_exit(fractol, 0);
 	else if (event.key == MLX_KEY_M || event.key == MLX_KEY_P)
 	{
-		if (event.key == MLX_KEY_M )
+		if (event.key == MLX_KEY_M)
 			fractol->pixel->max_iter *= 0.7;
 		else
-			fractol->pixel->max_iter *= 1.3;
+			fractol->pixel->max_iter *= 1.5;
+		if (fractol->pixel->max_iter < 2)
+			fractol->pixel->max_iter = 2;
 		fractol_render(fractol);
 	}
 	else
@@ -64,7 +67,7 @@ static void	my_key(mlx_key_data_t event, void *param)
 	}
 }
 
-static void	calculate_zoom_bounds(t_fractol *fractol, int mouse_x, int mouse_y, double zoom_factor)
+static void	calc_zoom(t_fractol *f, int ms_x, int ms_y, double zoom_factor)
 {
 	double	width;
 	double	height;
@@ -72,20 +75,20 @@ static void	calculate_zoom_bounds(t_fractol *fractol, int mouse_x, int mouse_y, 
 	double	mouse_i;
 	t_pixel	*p;
 
-	p = fractol->pixel;
+	p = f->pixel;
 	width = p->max_cd_r - p->min_cd_r;
 	height = p->max_cd_i - p->min_cd_i;
-	mouse_r = p->min_cd_r + ((double)mouse_x / WIDTH) * width;
-	mouse_i = p->min_cd_i + ((double)(HEIGHT - mouse_y) / HEIGHT) * height;
+	mouse_r = p->min_cd_r + ((double)ms_x / WIDTH) * width;
+	mouse_i = p->min_cd_i + ((double)(HEIGHT - ms_y) / HEIGHT) * height;
 	width *= zoom_factor;
 	height *= zoom_factor;
-	p->min_cd_r = mouse_r - ((double)mouse_x / WIDTH) * width;
+	p->min_cd_r = mouse_r - ((double)ms_x / WIDTH) * width;
 	p->max_cd_r = p->min_cd_r + width;
-	p->min_cd_i = mouse_i - ((double)(HEIGHT - mouse_y) / HEIGHT) * height;
+	p->min_cd_i = mouse_i - ((double)(HEIGHT - ms_y) / HEIGHT) * height;
 	p->max_cd_i = p->min_cd_i + height;
 }
 
-static void	my_scroll(double xdelta, double ydelta, void *param)
+void	my_scroll(double xdelta, double ydelta, void *param)
 {
 	t_fractol	*fractol;
 	int			mouse_x;
@@ -97,21 +100,21 @@ static void	my_scroll(double xdelta, double ydelta, void *param)
 	if (ydelta == 0)
 		return ;
 	mlx_get_mouse_pos(fractol->mlx, &mouse_x, &mouse_y);
-	if (mouse_x < 0 || mouse_x >= WIDTH || 
-   		mouse_y < 0 || mouse_y >= HEIGHT)
-   	return;
+	if (mouse_x < 0 || mouse_x >= WIDTH
+		|| mouse_y < 0 || mouse_y >= HEIGHT)
+		return ;
 	if (ydelta > 0)
 		zoom_factor = 1.2;
 	else
 		zoom_factor = 0.8;
-	calculate_zoom_bounds(fractol, mouse_x, mouse_y, zoom_factor);
+	calc_zoom(fractol, mouse_x, mouse_y, zoom_factor);
 	fractol_render(fractol);
 }
 
-void	event_handler(t_fractol *fractol)
+void	my_close(void *param)
 {
-	mlx_key_hook(fractol->mlx, my_key, fractol);
-	mlx_scroll_hook(fractol->mlx, my_scroll, fractol);
-	// mlx_close_hook(fractol->mlx, my_close, fractol);
-	mlx_loop(fractol->mlx);
+	t_fractol	*f;
+
+	f = (t_fractol *)param;
+	clean_exit(f, 0);
 }
