@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 01:47:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/14 17:11:41 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/14 21:33:26 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	send_char(int pid, char c)
 		else
 			kill(pid, SIGUSR2);
 		i--;
-		usleep(60);
+		usleep(100);
 	}
 }
 
