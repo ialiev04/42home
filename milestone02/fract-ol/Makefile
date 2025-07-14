@@ -48,8 +48,8 @@ $(PRINTF_LIB):
 
 clean:
 	$(RM) $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(PRINTF_DIR) fclean
 
 mlxclean:
 	$(RM) $(OBJS)
