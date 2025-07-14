@@ -18,8 +18,8 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 
-# define WIDTH			512
-# define HEIGHT			512
+# define WIDTH			1000
+# define HEIGHT			1000
 
 # define COLOR_BLACK	0x00000000
 # define COLOR_1		0xFF00FFFF
@@ -82,6 +82,5 @@ void		my_key(mlx_key_data_t event, void *param);
 void		my_scroll(double xdelta, double ydelta, void *param);
 void		my_close(void *param);
 int			error_msg(void);
-int			main(int ac, char **av);
 
 #endif
