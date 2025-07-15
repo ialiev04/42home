@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 00:05:27 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/16 01:01:22 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/07/16 00:13:03 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/07/16 01:00:26 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/philo.h"
+#include "../include/philo.h"
 
-int	main(int ac, char **av)
+int	check_syntax(int ac, char **av)
 {
-	t_philo	*philo;
-	t_philo	*rules;
+	size_t	i;
+	size_t	j;
 
-	if (ac == 5 || ac == 6)
+	i = 0;
+	j = 1;
+	while (j < ac)
 	{
-		if (check_syntax(ac, av) == 1);			//check sytax, exit if failure
+		if (av[j][i] <= '9' && av[j][i] >= '0')
+			i++;
+		else
 			return (error_msg());
-		init_philo(ac, av, philo, rules);		//initiate philo values
+		j++;
 	}
-	else
-		return(error_msg());
+}
+
+void	init_philo(int ac, char **av, t_philo *philo, t_rules *rules)
+{
+	rules->philos = ft_atoi(av[1]);
+	rules->ttl = ft_atoi(av[2]);
+	rules->tte = ft_atoi(av[3]);
+	rules->tts = ft_atoi(av[4]);
+	if (ac == 6)
+		rules->max_eat = ft_atoi(av[5]);
 }
