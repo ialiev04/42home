@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 01:47:14 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/14 21:24:34 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/15 23:27:24 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,18 @@ void	handle_sig(int sig)
 {
 	static int				bits = 8;
 	static unsigned char	current_char = 0;
-	char					temp;
 
-	temp = 0;
+	current_char <<= 1;
 	if (sig == SIGUSR1)
-		temp = 1;
-	current_char = current_char | temp;
-	if (--bits > 0)
-		current_char <<= 1;
-	if (bits < 0)
+		current_char |= 1;
+	if (--bits == 0)
 	{
 		if (current_char == '\0')
 			write(1, "\n", 1);
 		else
 			write(1, &current_char, 1);
 		current_char = 0;
-		bits = 7;
+		bits = 8;
 	}
 }
 
