@@ -9,7 +9,7 @@ Each project is contained in its own directory within its respective milestone a
 ## Planned Projects
 
 - **Minishell**
-- **Philosophers**<br>
+- **Philosophers**<br><br>
 Each project includes source code, a Makefile, and a `README.md` when applicable.
 
 ---
