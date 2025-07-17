@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 14:08:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/13 18:22:47 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:40:24 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	find_and_display(int x, int y, t_pixel *p, t_fractol *fractol)
 		calc_mandel(p, fractol);
 	else if (!ft_strncmp(fractol->name, "julia", 5))
 		calc_julia(p, fractol);
+	else if (!ft_strncmp(fractol->name, "multibrot", 9))
+		calc_multi(p, fractol);
 }
 
 void	fractol_render(t_fractol *fractol)

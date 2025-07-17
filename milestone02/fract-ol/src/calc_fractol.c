@@ -6,94 +6,52 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:45:20 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/13 19:22:11 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:53:42 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-static void	display_pixel_three(int i, t_pixel *p, t_fractol *f)
+static uint32_t	get_color(int i, t_pixel *p)
 {
-	if (i <= 110)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_22);
-	else if (i <= 120)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_23);
-	else if (i <= 130)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_1);
-	else if (i <= 140)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_2);
-	else if (i <= 150)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_3);
-	else if (i <= 160)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_4);
-	else if (i <= 170)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_5);
-	else if (i <= 180)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_6);
-	else if (i <= 200)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_7);
-	else if (i <= 220)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_8);
-	else if (i <= 250)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_9);
-	else
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_10);
-}
-
-static void	display_pixel_two(int i, t_pixel *p, t_fractol *f)
-{
-	if (i <= 30)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_11);
-	else if (i <= 32)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_12);
-	else if (i <= 36)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_13);
-	else if (i <= 40)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_14);
-	else if (i <= 45)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_15);
-	else if (i <= 50)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_16);
-	else if (i <= 60)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_17);
-	else if (i <= 70)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_18);
-	else if (i <= 80)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_19);
-	else if (i <= 90)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_20);
-	else if (i <= 100)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_21);
-	else
-		display_pixel_three(i, p, f);
+	double		t;
+	uint32_t	color;
+	
+	t = (double)i / 20;
+	color = 0;
+	if (p->color_palette == 0)
+	{
+		color |= (uint8_t)((sin(t * 10.0) * 0.5 + 0.5) * 255) << 24;
+		color |= (uint8_t)((sin(t * 7.0 + 2.0) * 0.5 + 0.5) * 255) << 16;
+		color |= (uint8_t)((sin(t * 13.0 + 5.0) * 0.5 + 0.5) * 255) << 8;
+	}
+	else if (p->color_palette == 1)
+	{
+		color |= (uint8_t)(sqrt(t) * 255) << 24;
+		color |= (uint8_t)(sqrt(t) * 255) << 16;
+		color |= (uint8_t)(sqrt(t) * 255) << 8;
+	}
+	else if (p->color_palette == 2)
+	{
+		t = (double)i / p->max_iter;
+		color |= (uint8_t)(sin(t * 1.5) * 120 + 10) << 24;
+		color |= (uint8_t)(sin(t * 1.5) * 50 + 5) << 16;
+		color |= (uint8_t)(sin(t * 1.5) * 130 + 15) << 8;
+	}
+	return (color | 255);
 }
 
 static void	display_pixel(int i, t_pixel *p, t_fractol *f)
 {
+	uint32_t	color;
+
 	if (i == p->max_iter)
 		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_BLACK);
-	else if (i <= 2)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_1);
-	else if (i <= 4)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_2);
-	else if (i <= 6)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_3);
-	else if (i <= 8)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_4);
-	else if (i <= 10)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_5);
-	else if (i <= 12)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_6);
-	else if (i <= 16)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_7);
-	else if (i <= 20)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_8);
-	else if (i <= 24)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_9);
-	else if (i <= 28)
-		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, COLOR_10);
 	else
-		display_pixel_two(i, p, f);
+	{
+		color = get_color(i, p);
+		mlx_put_pixel(f->img, p->real_coord, p->imag_coord, color);
+	}
 }
 
 void	calc_mandel(t_pixel *pixel, t_fractol *fractol)
@@ -115,6 +73,32 @@ void	calc_mandel(t_pixel *pixel, t_fractol *fractol)
 			break ;
 		zi = 2 * zr * zi + pixel->imag_part;
 		zr = zr2 - zi2 + pixel->real_part;
+		i++;
+	}
+	display_pixel(i, pixel, fractol);
+}
+
+void	calc_multi(t_pixel *pixel, t_fractol *fractol)
+{
+	double	zr;
+	double	zi;
+	double	zr2;
+	double	zi2;
+	double	tmp_zr;
+	int		i;
+
+	zr = 0;
+	zi = 0;
+	i = 0;
+	while (i < pixel->max_iter)
+	{
+		zr2 = zr * zr;
+		zi2 = zi * zi;
+		if (zr2 + zi2 >= 4)
+			break ;
+		tmp_zr = zr * zr * zr - 3 * zr * zi * zi + pixel->real_part;
+		zi = 3 * zr * zr * zi - zi * zi * zi + pixel->imag_part;
+		zr = tmp_zr;
 		i++;
 	}
 	display_pixel(i, pixel, fractol);

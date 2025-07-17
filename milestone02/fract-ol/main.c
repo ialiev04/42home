@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:38:47 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/13 18:02:35 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:55:10 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	main(int ac, char **av)
 {
 	t_fractol	*fractol;
 
-	if ((ac == 2 && !ft_strncmp(av[1], "mandelbrot", 10))
-		|| (ac == 4 && !ft_strncmp(av [1], "julia", 5)))
+	if (check_input(ac, av) == 0)
 	{
 		fractol = fractol_init(av[1]);
 		if (ac == 4)
@@ -27,6 +26,19 @@ int	main(int ac, char **av)
 	}
 	else
 		return (error_msg());
+}
+
+int	check_input(int ac, char **av)
+{
+	if (ac != 2 && ac != 4)
+		return (1);
+	if (ac == 2 && !ft_strncmp(av[1], "mandelbrot\0", 11))
+		return (0);
+	else if (ac == 2 && !ft_strncmp(av[1], "multibrot\0", 10))
+		return (0);
+	else if (ac == 4 && !ft_strncmp(av[1], "julia\0", 6))
+		return (0);
+	return (1);
 }
 
 void	event_handler(t_fractol *fractol)

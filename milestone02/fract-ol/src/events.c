@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 01:57:22 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/13 18:57:14 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/17 15:52:21 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,27 @@ void	handle_movement_keys(mlx_key_data_t event, t_fractol *fractol)
 
 void	my_key(mlx_key_data_t event, void *param)
 {
-	t_fractol	*fractol;
+	t_fractol	*f;
 
-	fractol = (t_fractol *)param;
+	f = (t_fractol *)param;
 	if (event.action != MLX_PRESS)
 		return ;
 	if (event.key == MLX_KEY_ESCAPE)
-		clean_exit(fractol, 0);
+		clean_exit(f, 0);
 	else if (event.key == MLX_KEY_M || event.key == MLX_KEY_P)
 	{
 		if (event.key == MLX_KEY_M)
-			fractol->pixel->max_iter *= 0.7;
+			f->pixel->max_iter *= 0.7;
 		else
-			fractol->pixel->max_iter *= 1.5;
-		if (fractol->pixel->max_iter < 2)
-			fractol->pixel->max_iter = 2;
-		fractol_render(fractol);
+			f->pixel->max_iter *= 1.5;
+		if (f->pixel->max_iter < 2)
+			f->pixel->max_iter = 2;
 	}
+	else if (event.key == MLX_KEY_C)
+		f->pixel->color_palette = (f->pixel->color_palette + 1) % 3;
 	else
-	{
-		handle_movement_keys(event, fractol);
-		fractol_render(fractol);
-	}
+		handle_movement_keys(event, f);
+	fractol_render(f);
 }
 
 static void	calc_zoom(t_fractol *f, int ms_x, int ms_y, double zoom_factor)

@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 17:49:04 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/13 18:49:32 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/17 15:33:14 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	init_pixel(t_pixel *p)
 	p->min_cd_i = -2.0;
 	p->max_cd_i = 2.0;
 	p->max_iter = 100;
+	p->color_palette = 0;
 }
 
 t_fractol	*fractol_init(char *name)
