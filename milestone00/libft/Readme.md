@@ -9,7 +9,7 @@ This is my libft 42 project.
 Include the *libft.h* in your file.
 Compile using make.
 
-If you want to include the Makefile into your Makefile add the following rules:
+If you want to include the Makefile into your Makefile add the following rules:<br>
 
 LIBFTNAME = libft.a
 LIBFTDIR = ./libft
