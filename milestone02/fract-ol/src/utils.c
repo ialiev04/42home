@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 19:51:12 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/13 21:05:01 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:58:38 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	error_msg(void)
 	ft_printf("**********************************************************\n");
 	ft_printf("INVALID INPUT!\n\n");
 	ft_printf("For Mandelbrot please enter:	./fractol mandelbrot\n");
+	ft_printf("For multibrot please enter:	./fractol multibrot\n");
 	ft_printf("For Julia please enter:		./fractol julia -0.36 0.6\n");
 	ft_printf("Possible julias you can try:\n");
 	ft_printf("-0.76 0.3\n");
