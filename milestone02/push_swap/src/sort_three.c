@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:20:01 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/16 21:08:31 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:22:49 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 t_stack	*find_biggest(t_stack *a)
 {

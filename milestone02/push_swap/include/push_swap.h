@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:31 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/29 16:10:42 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:28:29 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define PUSH_SWAP_H
 
 // libs
-# include "ft_printf/ft_printf.h"
-# include "libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <stdbool.h>
 # include <limits.h>
@@ -31,7 +30,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-// commands
+//	commands
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
 void	rra(t_stack **a);
@@ -44,7 +43,7 @@ void	sa(t_stack **a);
 void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
 
-// functions
+//	functions
 t_stack	*last_node(t_stack *first);
 int		no_duplicates(t_stack *a, int num);
 void	free_list(t_stack **a);

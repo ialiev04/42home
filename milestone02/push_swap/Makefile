@@ -5,7 +5,7 @@ CFLAGS := -Wall -Werror -Wextra
 
 SRC_PATH := src
 CMD_PATH := commands
-LIBFT_PATH := libft
+LIBFT_PATH := mini_libft
 PRINTF_PATH := ft_printf
 LIBFT := $(LIBFT_PATH)/libft.a
 PRINTF := $(PRINTF_PATH)/libftprintf.a
@@ -21,7 +21,9 @@ SRCS =	main.c \
 		$(CMD_PATH)/push.c \
 		$(CMD_PATH)/revrotate.c \
 		$(CMD_PATH)/rotate.c \
-		$(CMD_PATH)/swap.c
+		$(CMD_PATH)/swap.c \
+		$(LIBFT_PATH)/ft_calloc.c
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -33,8 +35,6 @@ $(NAME): $(OBJS) $(LIBFT) $(PRINTF)
 %.o: %.c
 	@$(CC) $(CFLAGS) -I$(LIBFT_PATH) -c $< -o $@
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_PATH)
 $(PRINTF):
 	@$(MAKE) -C $(PRINTF_PATH)
 

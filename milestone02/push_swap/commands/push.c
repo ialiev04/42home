@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 18:35:44 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/26 16:22:21 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:21:54 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 static void	push(t_stack **src, t_stack **dst)
 {

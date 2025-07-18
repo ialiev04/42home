@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:45:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/16 21:08:29 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:22:46 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 static void	rotate_both(t_stack	*cheapest, t_stack **a, t_stack **b)
 {

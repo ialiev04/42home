@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:44:50 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/16 21:08:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:22:57 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 int	stack_len(t_stack **a)
 {

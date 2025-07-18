@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:51:05 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/06/16 21:08:26 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:22:44 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	set_taget_nodes(t_stack **a, t_stack **b)
 {
