@@ -26,5 +26,3 @@ Each project includes source code, a Makefile, and a `README.md` when applicable
 42 Heilbronn is a tuition-free programming school that emphasizes peer-to-peer learning, practical experience, and project-based education.  
 No classes. No teachers. Just coding.<br>
 Find out more: https://www.42heilbronn.de/en/
-
----
