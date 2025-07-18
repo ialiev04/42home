@@ -1,56 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_diu.c                                        :+:      :+:    :+:   */
+/*   print_csp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 15:08:38 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/26 18:43:19 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/18 20:02:49 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/07/18 15:49:00 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
-int	print_sint(int num)
+int	print_c(int c)
 {
-	char	*num_ascii;
-	int		i;
+	int	i;
 
-	num_ascii = ft_itoa(num);
-	if (!num_ascii)
-		return (-1);
-	i = 0;
-	while (num_ascii[i])
-	{
-		if (write(1, &num_ascii[i], 1) < 1)
-		{
-			free(num_ascii);
-			return (-1);
-		}
-		i++;
-	}
-	free(num_ascii);
+	i = write(1, &c, 1);
 	return (i);
 }
 
-int	print_uint(int num)
+int	print_str(char *str)
 {
-	char	*num_ascii;
-	int		i;
+	int	i;
 
-	num_ascii = ft_uitoa(num);
-	if (!num_ascii)
-		return (-1);
 	i = 0;
-	while (num_ascii[i])
-	{
-		if (write(1, &num_ascii[i++], 1) < 1)
-		{
-			free(num_ascii);
+	if (str == NULL)
+		str = "(null)";
+	while (str[i])
+		if (write(1, &str[i++], 1) == -1)
 			return (-1);
-		}
-	}
-	free(num_ascii);
 	return (i);
+}
+
+int	print_adr(unsigned long p)
+{
+	int	len;
+
+	if (write(1, "0x", 2) < 2)
+		return (-1);
+	len = 2;
+	if (p == 0)
+	{
+		if (write(1, "0", 1) < 1)
+			return (-1);
+		return (3);
+	}
+	else
+	{
+		if (put_hex(p, 'x') < 0)
+			return (-1);
+		len += hex_len(p);
+	}
+	return (len);
 }

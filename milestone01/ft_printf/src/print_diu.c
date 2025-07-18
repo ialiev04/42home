@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   print_diu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 19:45:38 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 13:30:16 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/19 15:08:38 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/07/18 15:48:42 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
 static int	ft_num_len(int n)
 {
@@ -34,7 +34,7 @@ static int	ft_num_len(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+static char	*ft_itoa(int n)
 {
 	int		len;
 	long	num;
@@ -56,4 +56,47 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		ret[0] = '-';
 	return (ret);
+}
+
+int	print_sint(int num)
+{
+	char	*num_ascii;
+	int		i;
+
+	num_ascii = ft_itoa(num);
+	if (!num_ascii)
+		return (-1);
+	i = 0;
+	while (num_ascii[i])
+	{
+		if (write(1, &num_ascii[i], 1) < 1)
+		{
+			free(num_ascii);
+			return (-1);
+		}
+		i++;
+	}
+	free(num_ascii);
+	return (i);
+}
+
+int	print_uint(int num)
+{
+	char	*num_ascii;
+	int		i;
+
+	num_ascii = ft_uitoa(num);
+	if (!num_ascii)
+		return (-1);
+	i = 0;
+	while (num_ascii[i])
+	{
+		if (write(1, &num_ascii[i++], 1) < 1)
+		{
+			free(num_ascii);
+			return (-1);
+		}
+	}
+	free(num_ascii);
+	return (i);
 }

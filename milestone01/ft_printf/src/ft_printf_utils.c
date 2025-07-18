@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:09:35 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/25 19:41:17 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 15:48:51 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	unsigned_num_len(unsigned int n)
 {
@@ -47,7 +47,7 @@ char	*ft_uitoa(unsigned int n)
 	return (ret);
 }
 
-int	hex_len(uintptr_t x)
+int	hex_len(unsigned long x)
 {
 	int	len;
 
@@ -60,7 +60,7 @@ int	hex_len(uintptr_t x)
 	return (len);
 }
 
-int	put_hex(uintptr_t x, char format)
+int	put_hex(unsigned long x, char format)
 {
 	char	c;
 

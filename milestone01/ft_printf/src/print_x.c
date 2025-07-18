@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   print_x.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 20:29:30 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/20 13:30:44 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/03/26 17:59:17 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/07/18 15:49:08 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	print_hex(unsigned int x, char format)
 {
-	unsigned int	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		f(i, &s[i]);
-		i++;
-	}
+	if (x == 0)
+		return (write(1, "0", 1));
+	else if (put_hex(x, format) < 0)
+		return (-1);
+	return (hex_len(x));
 }
