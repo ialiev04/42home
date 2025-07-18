@@ -11,10 +11,6 @@ BSOURCES = \
 	src/ft_lstnew.c src/ft_lstadd_front.c src/ft_lstsize.c src/ft_lstlast.c src/ft_lstadd_back.c \
 	src/ft_lstdelone.c src/ft_lstclear.c src/ft_lstiter.c src/ft_lstmap.c
 
-OBJECTS = $(SOURCES:.c=.o)
-BOBJECTS = $(BSOURCES:.c=.o)
-
-# Change object files to obj/ directory
 OBJECTS := $(patsubst src/%.c, obj/%.o, $(SOURCES))
 BOBJECTS := $(patsubst src/%.c, obj/%.o, $(BSOURCES))
 

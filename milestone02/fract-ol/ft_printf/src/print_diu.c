@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:38 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/05/13 17:19:47 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 15:48:42 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static int	ft_num_len(int n)
 {

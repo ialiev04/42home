@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:02:49 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/26 13:56:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 15:49:00 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	print_c(int c)
 {
@@ -33,7 +33,7 @@ int	print_str(char *str)
 	return (i);
 }
 
-int	print_adr(uintptr_t p)
+int	print_adr(unsigned long p)
 {
 	int	len;
 

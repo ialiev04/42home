@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:59:17 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/26 17:59:21 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 15:49:08 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	print_hex(unsigned int x, char format)
 {

@@ -1,26 +1,29 @@
 NAME = libft.a
+SOURCES = \
+	src/ft_strlen.c src/ft_strncmp.c
+
+OBJECTS := $(patsubst src/%.c, obj/%.o, $(SOURCES))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-
-SOURCES =	ft_strlen.c \
-			ft_strncmp.c 
-
-OBJECTS = $(SOURCES:.c=.o)
+AR = ar
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@$(AR) -r $@ $?
+	$(AR) -r $@ $^
 
-%.o: %.c
-	@$(CC) -c $(CFLAGS) $?
+obj/%.o: src/%.c | obj
+	$(CC) -c $(CFLAGS) $< -o $@
+
+obj:
+	mkdir -p obj
 
 clean:
-	@rm -f $(OBJECTS)
+	rm -rf obj
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

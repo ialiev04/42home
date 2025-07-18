@@ -13,6 +13,8 @@ LIBFT_LIB := $(LIBFT_DIR)/libft.a
 PRINTF_DIR := ft_printf
 PRINTF_LIB := $(PRINTF_DIR)/libftprintf.a
 
+OBJ_DIR := obj
+
 SRCS :=	main.c \
 		src/utils.c \
 		src/calc_fractol.c \
@@ -21,7 +23,7 @@ SRCS :=	main.c \
 		src/init.c \
 		src/atof.c
 
-OBJS := $(SRCS:.c=.o)
+OBJS := $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
 all: $(MLX_LIBFILE) $(LIBFT_LIB) $(PRINTF_LIB) $(NAME)
 
@@ -31,8 +33,14 @@ $(NAME): $(OBJS)
 		-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo \
 		-o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I $(MLX_INC) -I $(LIBFT_DIR) -I $(PRINTF_DIR) -c $< -o $@
+
+$(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(MLX_INC) -I $(LIBFT_DIR) -I $(PRINTF_DIR) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 $(MLX_LIBFILE):
 	@git clone --recursive https://github.com/codam-coding-college/MLX42.git $(MLX_DIR) || true
@@ -47,12 +55,12 @@ $(PRINTF_LIB):
 	@$(MAKE) -C $(PRINTF_DIR)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) -r $(OBJ_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
 
 mlxclean:
-	$(RM) $(OBJS)
+	$(RM) -r $(OBJ_DIR)
 	$(RM) $(NAME)
 
 fclean: clean

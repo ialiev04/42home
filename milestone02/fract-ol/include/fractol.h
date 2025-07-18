@@ -13,8 +13,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../ft_printf/ft_printf.h"
-# include "../mini_libft/libft.h"
+# include "../ft_printf/include/ft_printf.h"
+# include "../mini_libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <math.h>

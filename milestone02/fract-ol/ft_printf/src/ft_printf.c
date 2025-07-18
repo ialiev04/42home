@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:42:12 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/03/26 18:28:14 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/07/18 15:48:55 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	what_case(char format, va_list args)
 {
@@ -22,7 +22,7 @@ int	what_case(char format, va_list args)
 	else if (format == 's')
 		len = print_str(va_arg(args, char *));
 	else if (format == 'p')
-		len = print_adr(va_arg(args, uintptr_t));
+		len = print_adr(va_arg(args, unsigned long));
 	else if (format == 'd' || format == 'i')
 		len = print_sint(va_arg(args, signed int));
 	else if (format == 'u')

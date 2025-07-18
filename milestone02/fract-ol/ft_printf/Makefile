@@ -4,24 +4,26 @@ CFLAGS = -Wall -Werror -Wextra
 AR = ar
 ARFLAGS = rcs
 
-SRCS =	ft_printf.c \
-		ft_printf_utils.c \
-		print_csp.c \
-		print_diu.c \
-		print_x.c
+SRCS =	src/ft_printf.c \
+		src/ft_printf_utils.c \
+		src/print_csp.c \
+		src/print_diu.c \
+		src/print_x.c
 
-OBJS = $(SRCS:.c=.o)
+OBJ_DIR := ./obj
+OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@ar $(ARFLAGS) $(NAME) $(OBJS)
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	
 fclean: clean
 	@rm -f $(NAME)
