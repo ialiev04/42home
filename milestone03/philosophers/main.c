@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:27 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/16 01:01:22 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/09/17 21:01:57 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 int	main(int ac, char **av)
 {
 	t_philo	*philo;
-	t_philo	*rules;
+	t_rules	*rules;
 
 	if (ac == 5 || ac == 6)
 	{
-		if (check_syntax(ac, av) == 1);			//check sytax, exit if failure
-			return (error_msg());
-		init_philo(ac, av, philo, rules);		//initiate philo values
+		check_syntax(ac, av);
+		init(ac, av, &philo, rules);
+		edge_case(philo, rules);
+		init_threads(&philo, rules);
+		join_threads(&philo, rules);
 	}
 	else
 		return(error_msg());
