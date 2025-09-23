@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 21:07:43 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/18 17:28:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/08/09 13:32:24 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/"
+#include "../include/push_swap.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

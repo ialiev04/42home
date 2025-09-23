@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:16:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/17 20:36:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/09/23 20:41:39 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 unsigned int	ft_atoi(const char *s)
 {
 	size_t		i;
-	uint64_t	ret;
+	uint32_t	ret;
 
 	i = 0;
 	ret = 0;
@@ -33,26 +33,23 @@ unsigned int	ft_atoi(const char *s)
 	return ((uint32_t)ret);
 }
 
-int	error_msg(void)
+void	edge_case(t_data *data)
 {
-	printf("*************************************************************\n");
-	printf("Wrong syntax! Please enter:\n");
-	printf("	./philo number_of_philosophers time_to_die\n");
-	printf("			time_to_eat time_to_sleep\n");
-	printf("	unsigned integers only\n");
-	printf("*************************************************************\n");
-	return (1);
+	if (data->rules.max_eat == 0 || data->rules.philos == 1)
+		exit(0);
+	else if (data->rules.philos == 1)
+		exit(1); //one_philo()		//todo
 }
 
 void	check_syntax(int ac, char **av)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
-	i = 0;
 	j = 1;
 	while (j < ac)
 	{
+		i = 0;
 		while (av[j][i] == ' ' || av[j][i] == '	')
 			i++;
 		while (av[j][i] <= '9' && av[j][i] >= '0')
@@ -65,15 +62,36 @@ void	check_syntax(int ac, char **av)
 	}
 }
 
-void	edge_case(t_philo *philo, t_rules *rules)
+uint64_t	get_time(void)
 {
-	if (rules->max_eat == 0)
-		clean_exit(0);
-	else if (philo->num == philo->next->num)
-		one_philo(philo, rules);			//todo
+	struct timeval	tv;
+	uint32_t		ms;
+
+	gettimeofday(&tv, NULL);
+	ms = (uint64_t)tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (ms);
 }
 
-void	clean_exit(int error)
+void	safe_print(t_philo *philo, char *message)
 {
-	
+	uint64_t	timestamp;
+
+	if (!is_dead(philo->data))
+	{
+		timestamp = get_time() - philo->data->rules.start_time;
+		pthread_mutex_lock(&philo->data->rules.print_mutex);
+		if (!philo->data->rules.someone_died)
+			printf("%llu %d %s\n", timestamp, philo->id, message);
+		pthread_mutex_unlock(&philo->data->rules.print_mutex);
+	}
+}
+
+void	death_print(t_philo *philo, char *message)
+{
+	uint64_t	timestamp;
+
+	timestamp = get_time() - philo->data->rules.start_time;
+	pthread_mutex_lock(&philo->data->rules.print_mutex);
+	printf("%llu %d %s\n", timestamp, philo->id, message);
+	pthread_mutex_unlock(&philo->data->rules.print_mutex);
 }

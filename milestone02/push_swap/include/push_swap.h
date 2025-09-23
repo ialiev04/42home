@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:32:31 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/07/18 17:28:29 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/08/09 13:33:26 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int		stack_a(t_stack **a, char **av, int ac);
 int		stack_len(t_stack **a);
 int		stack_sorted(t_stack **a);
 void	rotate_till_done(t_stack **a);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif
