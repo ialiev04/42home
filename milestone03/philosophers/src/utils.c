@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:16:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/23 20:41:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/09/25 17:34:20 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,20 @@ uint64_t	get_time(void)
 	return (ms);
 }
 
-void	safe_print(t_philo *philo, char *message)
+uint64_t	safe_print(t_philo *philo, char *message)
 {
 	uint64_t	timestamp;
 
+	timestamp = get_time();
 	if (!is_dead(philo->data))
 	{
-		timestamp = get_time() - philo->data->rules.start_time;
 		pthread_mutex_lock(&philo->data->rules.print_mutex);
+		timestamp = get_time() - philo->data->rules.start_time;
 		if (!philo->data->rules.someone_died)
 			printf("%llu %d %s\n", timestamp, philo->id, message);
 		pthread_mutex_unlock(&philo->data->rules.print_mutex);
 	}
+	return (timestamp);
 }
 
 void	death_print(t_philo *philo, char *message)

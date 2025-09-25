@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/23 20:38:55 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/09/25 17:31:12 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static void	eat(t_philo *philo, uint32_t left_fork, uint32_t right_fork)
 	pthread_mutex_lock(&philo->data->forks[right_fork]);
 	safe_print(philo, "has taken a fork");
 	safe_print(philo, "has taken a fork");
-	safe_print(philo, "is eating");
-	philo->last_meal_time = get_time();
+	philo->last_meal_time = safe_print(philo, "is eating");
 	philo->meals_eaten++;
 	usleep(philo->data->rules.tte * 1000);
 	pthread_mutex_unlock(&philo->data->forks[right_fork]);
