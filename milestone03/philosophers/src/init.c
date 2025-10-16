@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:13:03 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/23 17:11:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/16 13:07:40 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ static void	init_philos(t_data *data)
 	{
 		data->philos[i].id = i + 1;
 		data->philos[i].meals_eaten = 0;
-		data->philos[i].last_meal_time = 0;		//todo: set proper start time
+		data->philos[i].last_meal_time = 0;
 		data->philos[i].data = data;
+		data->philos[i].done_eating = false;
 		i++;
 	}
 }

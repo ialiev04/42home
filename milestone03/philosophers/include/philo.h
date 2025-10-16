@@ -6,11 +6,11 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:29 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/25 17:31:59 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/16 14:15:16 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PHILO_H
+#ifndef PHILO_H
 # define PHILO_H
 
 # include <stdlib.h>
@@ -20,14 +20,14 @@
 # include <stdbool.h>
 # include <pthread.h>
 
-typedef struct	s_rules
+typedef struct s_rules
 {
 	uint32_t		philos;
 	uint32_t		ttl;
 	uint32_t		tte;
 	uint32_t		tts;
 	uint32_t		max_eat;
-	uint32_t		start_time;
+	uint64_t		start_time;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
 	bool			someone_died;
@@ -39,7 +39,8 @@ typedef struct s_philo
 	uint32_t		id;
 	uint32_t		meals_eaten;
 	uint64_t		last_meal_time;
-	struct s_data	*data;			// Pointer to shared data
+	bool			done_eating;
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
@@ -64,5 +65,6 @@ void		*monitor_routine(void *arg);
 uint64_t	safe_print(t_philo *philo, char *message);
 void		death_print(t_philo *philo, char *message);
 bool		is_dead(t_data *data);
+void		check_end(t_data *data);
 
 #endif

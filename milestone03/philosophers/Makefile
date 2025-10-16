@@ -10,17 +10,18 @@ SRCS =	main.c \
     	$(SRC_PATH)/simulation.c \
 		$(SRC_PATH)/threads.c \
 		$(SRC_PATH)/utils.c \
-		$(SRC_PATH)/errors.c
+		$(SRC_PATH)/end.c \
+		$(SRC_PATH)/safe_print.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-	@$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -Iinclude -c $< -o $@
+	$(CC) $(CFLAGS) -Iinclude -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)

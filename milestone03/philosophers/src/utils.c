@@ -6,16 +6,17 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:16:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/25 17:34:20 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/16 14:26:19 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <inttypes.h>
 
 unsigned int	ft_atoi(const char *s)
 {
 	size_t		i;
-	uint32_t	ret;
+	uint64_t	ret;
 
 	i = 0;
 	ret = 0;
@@ -35,10 +36,8 @@ unsigned int	ft_atoi(const char *s)
 
 void	edge_case(t_data *data)
 {
-	if (data->rules.max_eat == 0 || data->rules.philos == 1)
+	if (data->rules.max_eat == 0)
 		exit(0);
-	else if (data->rules.philos == 1)
-		exit(1); //one_philo()		//todo
 }
 
 void	check_syntax(int ac, char **av)
@@ -60,32 +59,6 @@ void	check_syntax(int ac, char **av)
 			exit(error_msg());
 		j++;
 	}
-}
-
-uint64_t	get_time(void)
-{
-	struct timeval	tv;
-	uint32_t		ms;
-
-	gettimeofday(&tv, NULL);
-	ms = (uint64_t)tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (ms);
-}
-
-uint64_t	safe_print(t_philo *philo, char *message)
-{
-	uint64_t	timestamp;
-
-	timestamp = get_time();
-	if (!is_dead(philo->data))
-	{
-		pthread_mutex_lock(&philo->data->rules.print_mutex);
-		timestamp = get_time() - philo->data->rules.start_time;
-		if (!philo->data->rules.someone_died)
-			printf("%llu %d %s\n", timestamp, philo->id, message);
-		pthread_mutex_unlock(&philo->data->rules.print_mutex);
-	}
-	return (timestamp);
 }
 
 void	death_print(t_philo *philo, char *message)
