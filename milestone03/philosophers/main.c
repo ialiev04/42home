@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:27 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/09/22 17:40:13 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/22 16:44:35 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		check_syntax(ac, av);
-		init(ac, av, &data);
-		edge_case(&data);
-		init_threads(&data);
-		join_threads(&data);
+		if (check_syntax(ac, av) != 0)
+			return (1);
+		if (init(ac, av, &data) == 0)
+			return (1);
+		if (edge_case(&data) == 0)
+			return (0);
+		if (init_threads(&data) == 0)
+			return (1);
+		if (join_threads(&data) == 0)
+			return (1);
 	}
 	else
 		return (error_msg());
+	return (clean_exit(&data));
 }

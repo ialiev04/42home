@@ -5,21 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:38:33 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/16 14:57:27 by ilaliev          ###   ########.fr       */
+/*   Created: 2025/10/22 14:12:58 by ilaliev           #+#    #+#             */
+/*   Updated: 2025/10/22 16:44:32 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	done_eating(t_data	*data)
+int	clean_exit(t_data *data)
 {
-	clean_exit()
+	int		i;
+
+	i = 0;
+	free(data->philos);
+	while (i < (int)data->rules.philos)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	free(data->forks);
+	pthread_mutex_destroy(&data->rules.print_mutex);
+	pthread_mutex_destroy(&data->rules.death_mutex);
+	return (0);
 }
 
-void	clean_exit(int error)
+int	error_exit(int i)
 {
-	exit(error);
+	(void)i;
+	return (1);
 }
 
 int	error_msg(void)
@@ -27,7 +40,7 @@ int	error_msg(void)
 	printf("*************************************************************");
 	printf("*******************************************\n");
 	printf("Wrong syntax! Please enter:\n");
-	printf("	./philo <number_of_philosophers> <time_to_die> ");
+	printf("\t./philo <number_of_philosophers> <time_to_die> ");
 	printf("<time_to_eat> <time_to_sleep> (<number_of_meals>)\n");
 	printf("unsigned integers only\n");
 	printf("*************************************************************");

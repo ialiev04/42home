@@ -6,13 +6,13 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:13:03 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/16 13:07:40 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/21 15:29:42 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static void	init_rules(int ac, char **av, t_data *data)
+static int	init_rules(int ac, char **av, t_data *data)
 {
 	data->rules.philos = ft_atoi(av[1]);
 	data->rules.ttl = ft_atoi(av[2]);
@@ -24,35 +24,38 @@ static void	init_rules(int ac, char **av, t_data *data)
 		data->rules.max_eat = UINT32_MAX;
 	data->rules.someone_died = false;
 	if (pthread_mutex_init(&data->rules.print_mutex, NULL) != 0)
-		clean_exit(1);
+		return (error_exit(1));
 	if (pthread_mutex_init(&data->rules.death_mutex, NULL) != 0)
-		clean_exit(1);
-	edge_case(data);
+		return (error_exit(2));
+	if (edge_case(data) == 0)
+		return (0);
+	return (1);
 }
 
-static void	init_forks(t_data *data)
+static int	init_forks(t_data *data)
 {
 	uint32_t	i;
 
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->rules.philos);
 	if (data->forks == NULL)
-		clean_exit(1);
+		return (error_exit(1));
 	i = 0;
 	while (i < data->rules.philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
-			clean_exit(1);
+			return (error_exit(1));
 		i++;
 	}
+	return (1);
 }
 
-static void	init_philos(t_data *data)
+static int	init_philos(t_data *data)
 {
 	uint32_t	i;
 
 	data->philos = malloc(sizeof(t_philo) * data->rules.philos);
 	if (data->philos == NULL)
-		clean_exit(1);
+		return (clean_exit(data));
 	i = 0;
 	while (i < data->rules.philos)
 	{
@@ -63,11 +66,16 @@ static void	init_philos(t_data *data)
 		data->philos[i].done_eating = false;
 		i++;
 	}
+	return (1);
 }
 
-void	init(int ac, char **av, t_data *data)
+int	init(int ac, char **av, t_data *data)
 {
-	init_rules(ac, av, data);
-	init_forks(data);
-	init_philos(data);
+	if (init_rules(ac, av, data) == 0)
+		return (0);
+	if (init_forks(data) == 0)
+		return (0);
+	if (init_philos(data) == 0)
+		return (0);
+	return (1);
 }

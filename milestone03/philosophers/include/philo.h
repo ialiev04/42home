@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:29 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/16 14:15:16 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/22 17:20:07 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,21 @@ typedef struct s_data
 }	t_data;
 
 uint32_t	ft_atoi(const char *s);
-void		check_syntax(int ac, char **av);
-void		init(int ac, char **av, t_data *data);
-void		edge_case(t_data *data);
-void		init_threads(t_data *data);
-void		join_threads(t_data *data);
+int			check_syntax(int ac, char **av);
+int			init(int ac, char **av, t_data *data);
+int			edge_case(t_data *data);
+int			init_threads(t_data *data);
+int			join_threads(t_data *data);
 int			error_msg(void);
-void		clean_exit(int error);
+int			clean_exit(t_data *data);
 uint64_t	get_time(void);
 void		*philo_routine(void *arg);
 void		*monitor_routine(void *arg);
 uint64_t	safe_print(t_philo *philo, char *message);
 void		death_print(t_philo *philo, char *message);
 bool		is_dead(t_data *data);
-void		check_end(t_data *data);
+int			check_end(t_data *data);
+int			error_exit(int i);
+void		fork_print(t_philo *philo);
 
 #endif

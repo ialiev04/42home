@@ -6,30 +6,32 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:27:47 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/13 17:14:44 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/22 16:47:26 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	join_threads(t_data *data)
+int	join_threads(t_data *data)
 {
 	uint32_t	i;
 
 	i = 0;
 	if (pthread_create(&data->monitor_thread, NULL, monitor_routine, data) != 0)
-		clean_exit(1);
+		return (error_exit(1));
 	while (i < data->rules.philos)
 	{
 		if (pthread_join(data->philos[i].thread_id, NULL) != 0)
-			clean_exit(1);
+			return (error_exit(1));
 		i++;
 	}
 	if (pthread_join(data->monitor_thread, NULL) != 0)
-		clean_exit(1);
+		return (error_exit(1));
+	
+	return (1);
 }
 
-void	init_threads(t_data *data)
+int	init_threads(t_data *data)
 {
 	uint32_t	i;
 
@@ -45,7 +47,8 @@ void	init_threads(t_data *data)
 	{
 		if (pthread_create(&data->philos[i].thread_id, NULL,
 				philo_routine, &data->philos[i]) != 0)
-			clean_exit(1);
+			return (clean_exit(data));
 		i++;
 	}
+	return (1);
 }

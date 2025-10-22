@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/16 14:57:18 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/22 17:23:57 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ bool	is_dead(t_data *data)
 	result = data->rules.someone_died;
 	pthread_mutex_unlock(&data->rules.death_mutex);
 	return (result);
-}
-
-static void	sleep_philo(t_philo *philo)
-{
-	safe_print(philo, "is sleeping");
-	usleep(philo->data->rules.tts * 1000);
 }
 
 static void	eat(t_philo *philo, uint32_t left_fork, uint32_t right_fork)
@@ -63,26 +57,26 @@ void	*philo_routine(void *arg)
 	{
 		safe_print(philo, "is thinking");
 		eat(philo, left_fork, right_fork);
-		sleep_philo(philo);
+		if (philo->done_eating == true)
+			return (NULL);
+		safe_print(philo, "is sleeping");
+		usleep(philo->data->rules.tts * 1000);
 	}
-	if (philo->done_eating == true)
-		usleep(10000000);
 	return (NULL);
 }
 
-void	check_end(t_data *data)
+int	check_end(t_data *data)
 {
 	uint32_t	i;
 
 	i = 0;
 	while (i < data->rules.philos)
 	{
-		if (data->philos->done_eating == false)
-			return ;
-		else
-			i++;
+		if (data->philos[i].done_eating == false)
+			return (0);
+		i++;
 	}
-	done_eating(data);		//todo
+	return (1);
 }
 
 void	*monitor_routine(void *arg)
@@ -94,11 +88,12 @@ void	*monitor_routine(void *arg)
 	while (!is_dead(data))
 	{
 		i = 0;
-		check_end(data);
+		if (check_end(data) == 1)
+			break ;
 		while (i < data->rules.philos)
 		{
 			if (get_time() - data->philos[i].last_meal_time > data->rules.ttl
-				&& data->philos->done_eating == false)
+				&& data->philos[i].done_eating == false)
 			{
 				pthread_mutex_lock(&data->rules.death_mutex);
 				data->rules.someone_died = true;

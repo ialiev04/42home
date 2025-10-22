@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:16:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/16 14:26:19 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/22 16:47:25 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ unsigned int	ft_atoi(const char *s)
 		i++;
 	}
 	if (ret > UINT32_MAX)
-		clean_exit(1);
+		error_exit(1); // todo
 	return ((uint32_t)ret);
 }
 
-void	edge_case(t_data *data)
+int	edge_case(t_data	*data)
 {
 	if (data->rules.max_eat == 0)
-		exit(0);
+		return (0);
+	return (1);
 }
 
-void	check_syntax(int ac, char **av)
+int	check_syntax(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -56,9 +57,10 @@ void	check_syntax(int ac, char **av)
 		while (av[j][i] == ' ' || av[j][i] == '	')
 			i++;
 		if (av[j][i] != '\0')
-			exit(error_msg());
+			return (error_msg());
 		j++;
 	}
+	return (0);
 }
 
 void	death_print(t_philo *philo, char *message)
