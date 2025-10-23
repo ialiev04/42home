@@ -17,8 +17,6 @@ int	join_threads(t_data *data)
 	uint32_t	i;
 
 	i = 0;
-	if (pthread_create(&data->monitor_thread, NULL, monitor_routine, data) != 0)
-		return (error_exit(1));
 	while (i < data->rules.philos)
 	{
 		if (pthread_join(data->philos[i].thread_id, NULL) != 0)
@@ -42,6 +40,8 @@ int	init_threads(t_data *data)
 		data->philos[i].last_meal_time = data->rules.start_time;
 		i++;
 	}
+	if (pthread_create(&data->monitor_thread, NULL, monitor_routine, data) != 0)
+		return (clean_exit(data));
 	i = 0;
 	while (i < data->rules.philos)
 	{

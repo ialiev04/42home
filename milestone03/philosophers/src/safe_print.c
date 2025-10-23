@@ -55,11 +55,14 @@ uint64_t	eat_print(t_philo *philo)
 	if (is_dead(philo->data) == false)
 	{
 		pthread_mutex_lock(&philo->data->rules.print_mutex);
-		time = get_time();
-		timestamp = time - philo->data->rules.start_time;
-		printf("%llu %d has taken a fork\n", timestamp, philo->id);
-		printf("%llu %d has taken a fork\n", timestamp, philo->id);
-		printf("%llu %d is eating\n", timestamp, philo->id);
+		if (is_dead(philo->data) == false)
+		{
+			time = get_time();
+			timestamp = time - philo->data->rules.start_time;
+			printf("%llu %d has taken a fork\n", timestamp, philo->id);
+			printf("%llu %d has taken a fork\n", timestamp, philo->id);
+			printf("%llu %d is eating\n", timestamp, philo->id);
+		}
 		pthread_mutex_unlock(&philo->data->rules.print_mutex);
 	}
 	return (time);
