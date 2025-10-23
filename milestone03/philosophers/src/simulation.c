@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/22 17:23:57 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:23:37 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static void	eat(t_philo *philo, uint32_t left_fork, uint32_t right_fork)
 	}
 	pthread_mutex_lock(&philo->data->forks[left_fork]);
 	pthread_mutex_lock(&philo->data->forks[right_fork]);
-	safe_print(philo, "has taken a fork");
-	safe_print(philo, "has taken a fork");
-	philo->last_meal_time = safe_print(philo, "is eating");
+	philo->last_meal_time = eat_print(philo);
 	philo->meals_eaten++;
 	if (philo->meals_eaten >= philo->data->rules.max_eat)
 		philo->done_eating = true;
@@ -53,13 +51,20 @@ void	*philo_routine(void *arg)
 	right_fork = philo->id;
 	if (philo->id == philo->data->rules.philos)
 		right_fork = 0;
+	if (philo->id % 2 == 1)
+	{
+		uint32_t	tmp;
+		tmp = left_fork;
+		left_fork = right_fork;
+		right_fork = tmp;
+	}
 	while (!is_dead(philo->data))
 	{
-		safe_print(philo, "is thinking");
+		think_print(philo);
 		eat(philo, left_fork, right_fork);
 		if (philo->done_eating == true)
 			return (NULL);
-		safe_print(philo, "is sleeping");
+		sleep_print(philo);
 		usleep(philo->data->rules.tts * 1000);
 	}
 	return (NULL);
@@ -98,7 +103,7 @@ void	*monitor_routine(void *arg)
 				pthread_mutex_lock(&data->rules.death_mutex);
 				data->rules.someone_died = true;
 				pthread_mutex_unlock(&data->rules.death_mutex);
-				death_print(&data->philos[i], "died");
+				death_print(&data->philos[i]);
 				return (NULL);
 			}
 			i++;

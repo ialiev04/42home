@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:29 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/22 17:20:07 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/23 08:29:32 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ int			clean_exit(t_data *data);
 uint64_t	get_time(void);
 void		*philo_routine(void *arg);
 void		*monitor_routine(void *arg);
-uint64_t	safe_print(t_philo *philo, char *message);
-void		death_print(t_philo *philo, char *message);
+uint64_t	eat_print(t_philo *philo);
+void		death_print(t_philo *philo);
 bool		is_dead(t_data *data);
 int			check_end(t_data *data);
 int			error_exit(int i);
-void		fork_print(t_philo *philo);
+void		think_print(t_philo *philo);
+void		sleep_print(t_philo *philo);
 
 #endif
