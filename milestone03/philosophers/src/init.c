@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:13:03 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/21 15:29:42 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/27 19:54:25 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int	init_rules(int ac, char **av, t_data *data)
 		data->rules.max_eat = UINT32_MAX;
 	data->rules.someone_died = false;
 	if (pthread_mutex_init(&data->rules.print_mutex, NULL) != 0)
-		return (error_exit(1));
+		return (1);
 	if (pthread_mutex_init(&data->rules.death_mutex, NULL) != 0)
-		return (error_exit(2));
+		return (error_exit(data, 1));
 	if (edge_case(data) == 0)
 		return (0);
 	return (1);
@@ -38,12 +38,15 @@ static int	init_forks(t_data *data)
 
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->rules.philos);
 	if (data->forks == NULL)
-		return (error_exit(1));
+		return (error_exit(data, 2));
 	i = 0;
 	while (i < data->rules.philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
-			return (error_exit(1));
+		{
+			free_forks(data, i - 1);
+			return (error_exit(data, 2));
+		}
 		i++;
 	}
 	return (1);
@@ -55,7 +58,7 @@ static int	init_philos(t_data *data)
 
 	data->philos = malloc(sizeof(t_philo) * data->rules.philos);
 	if (data->philos == NULL)
-		return (clean_exit(data));
+		return (error_exit(data, 3));
 	i = 0;
 	while (i < data->rules.philos)
 	{

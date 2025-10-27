@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:29 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/23 08:29:32 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/27 19:52:53 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ uint64_t	eat_print(t_philo *philo);
 void		death_print(t_philo *philo);
 bool		is_dead(t_data *data);
 int			check_end(t_data *data);
-int			error_exit(int i);
+int			error_exit(t_data *data, int i);
 void		think_print(t_philo *philo);
 void		sleep_print(t_philo *philo);
+void		free_forks(t_data *data, int forks);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 14:12:58 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/22 16:44:32 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/27 20:06:49 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,17 @@ int	clean_exit(t_data *data)
 	return (0);
 }
 
-int	error_exit(int i)
+int	error_exit(t_data *data, int i)
 {
-	(void)i;
+	if (i >= 1)
+		pthread_mutex_destroy(&data->rules.print_mutex);
+	if (i >= 2)
+		pthread_mutex_destroy(&data->rules.death_mutex);
+	if (i >= 3)
+		free_forks(data, data->rules.philos - 1);
+	if (i >= 4)
+		free(data->philos);
+	printf("something went wrong...\n");
 	return (1);
 }
 

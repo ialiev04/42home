@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:16:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/23 21:52:56 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/27 20:39:06 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ unsigned int	ft_atoi(const char *s)
 		i++;
 	}
 	if (ret > UINT32_MAX)
-		error_exit(1); // todo
+		return (UINT32_MAX);
 	return ((uint32_t)ret);
 }
 
 int	edge_case(t_data	*data)
 {
-	if (data->rules.max_eat == 0)
+	if (data->rules.max_eat < 1 || data->rules.philos < 1)
 		return (0);
 	return (1);
 }
@@ -71,4 +71,14 @@ void	death_print(t_philo *philo)
 	pthread_mutex_lock(&philo->data->rules.print_mutex);
 	printf("%llu %d has died\n", timestamp, philo->id);
 	pthread_mutex_unlock(&philo->data->rules.print_mutex);
+}
+
+void	free_forks(t_data *data, int forks)
+{
+	while (forks >= 0)
+	{
+		pthread_mutex_destroy(&data->forks[forks]);
+		forks--;
+	}
+	free(data->forks);
 }

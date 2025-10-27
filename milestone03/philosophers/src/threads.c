@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:27:47 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/22 16:47:26 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/27 20:34:19 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	join_threads(t_data *data)
 	while (i < data->rules.philos)
 	{
 		if (pthread_join(data->philos[i].thread_id, NULL) != 0)
-			return (error_exit(1));
+			return (error_exit(data, 4));
 		i++;
 	}
 	if (pthread_join(data->monitor_thread, NULL) != 0)
-		return (error_exit(1));
+		return (error_exit(data, 4));
 	
 	return (1);
 }
@@ -41,13 +41,13 @@ int	init_threads(t_data *data)
 		i++;
 	}
 	if (pthread_create(&data->monitor_thread, NULL, monitor_routine, data) != 0)
-		return (clean_exit(data));
+		return (error_exit(data, 4));
 	i = 0;
 	while (i < data->rules.philos)
 	{
 		if (pthread_create(&data->philos[i].thread_id, NULL,
 				philo_routine, &data->philos[i]) != 0)
-			return (clean_exit(data));
+			return (error_exit(data, 4));
 		i++;
 	}
 	return (1);
