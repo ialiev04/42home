@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/24 00:43:39 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/29 15:01:55 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,6 @@ void	*philo_routine(void *arg)
 	right_fork = philo->id;
 	if (philo->id == philo->data->rules.philos)
 		right_fork = 0;
-	// if (philo->id % 2 == 1)
-	// {
-	// 	uint32_t	tmp;
-	// 	tmp = left_fork;
-	// 	left_fork = right_fork;
-	// 	right_fork = tmp;
-	// }
 	while (!is_dead(philo->data))
 	{
 		think_print(philo);
