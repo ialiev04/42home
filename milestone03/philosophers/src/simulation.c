@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/29 15:01:55 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/29 17:47:45 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	eat(t_philo *philo, uint32_t left_fork, uint32_t right_fork)
 		return ;
 	}
 	if (philo->id % 2 == 1)
-		usleep(2000);
+		usleep(1500);
 	pthread_mutex_lock(&philo->data->forks[left_fork]);
 	pthread_mutex_lock(&philo->data->forks[right_fork]);
 	philo->last_meal_time = eat_print(philo);
@@ -47,12 +47,19 @@ void	*philo_routine(void *arg)
 	t_philo		*philo;
 	uint32_t	left_fork;
 	uint32_t	right_fork;
+	uint32_t	tmp;
 
 	philo = (t_philo *)arg;
 	left_fork = philo->id - 1;
 	right_fork = philo->id;
 	if (philo->id == philo->data->rules.philos)
 		right_fork = 0;
+	if (philo->id % 2 == 1)
+	{
+		tmp = left_fork;
+		left_fork = right_fork;
+		right_fork = tmp;
+	}
 	while (!is_dead(philo->data))
 	{
 		think_print(philo);
@@ -60,7 +67,6 @@ void	*philo_routine(void *arg)
 		if (philo->done_eating == true)
 			return (NULL);
 		sleep_print(philo);
-		usleep(philo->data->rules.tts * 1000);
 	}
 	return (NULL);
 }

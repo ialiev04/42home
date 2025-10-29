@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:27:47 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/27 20:34:19 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/10/29 17:47:58 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	join_threads(t_data *data)
 	}
 	if (pthread_join(data->monitor_thread, NULL) != 0)
 		return (error_exit(data, 4));
-	
 	return (1);
 }
 
