@@ -8,8 +8,7 @@ Each project is contained in its own directory within its respective milestone a
 
 ## Planned Projects
 
-- **Minishell**
-- **Philosophers (currently ongoing)**<br><br>
+- **Minishell**(next one)<br><br>
 Each project includes source code, a Makefile, and a `README.md` when applicable.
 
 ---
