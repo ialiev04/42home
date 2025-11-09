@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:16:51 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/29 17:48:12 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:23:39 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	death_print(t_philo *philo)
 
 	timestamp = get_time() - philo->data->rules.start_time;
 	pthread_mutex_lock(&philo->data->rules.print_mutex);
-	printf("%lu %d has died\n", timestamp, philo->id);
+	printf("%llu %d has died\n", timestamp, philo->id);
 	pthread_mutex_unlock(&philo->data->rules.print_mutex);
 }
 

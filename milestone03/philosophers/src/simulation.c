@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/10/29 17:47:45 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:23:29 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static void	eat(t_philo *philo, uint32_t left_fork, uint32_t right_fork)
 	pthread_mutex_lock(&philo->data->forks[left_fork]);
 	pthread_mutex_lock(&philo->data->forks[right_fork]);
 	philo->last_meal_time = eat_print(philo);
+	pthread_mutex_lock(&philo->data->rules.data_mutex);
 	philo->meals_eaten++;
 	if (philo->meals_eaten >= philo->data->rules.max_eat)
 		philo->done_eating = true;
+	pthread_mutex_unlock(&philo->data->rules.data_mutex);
 	usleep(philo->data->rules.tte * 1000);
 	pthread_mutex_unlock(&philo->data->forks[left_fork]);
 	pthread_mutex_unlock(&philo->data->forks[right_fork]);
@@ -85,6 +87,14 @@ int	check_end(t_data *data)
 	return (1);
 }
 
+static void	set_death(t_data *data, uint32_t i)
+{
+	pthread_mutex_lock(&data->rules.death_mutex);
+	data->rules.someone_died = true;
+	pthread_mutex_unlock(&data->rules.death_mutex);
+	death_print(&data->philos[i]);
+}
+
 void	*monitor_routine(void *arg)
 {
 	t_data		*data;
@@ -98,13 +108,12 @@ void	*monitor_routine(void *arg)
 			break ;
 		while (i < data->rules.philos)
 		{
+			pthread_mutex_lock(&data->rules.data_mutex);
 			if (get_time() - data->philos[i].last_meal_time > data->rules.ttl
-				&& data->philos[i].done_eating == false)
+				&& data->philos[i].done_eating == false
+				&& pthread_mutex_unlock(&data->rules.data_mutex) == 0)
 			{
-				pthread_mutex_lock(&data->rules.death_mutex);
-				data->rules.someone_died = true;
-				pthread_mutex_unlock(&data->rules.death_mutex);
-				death_print(&data->philos[i]);
+				set_death(data, i);
 				return (NULL);
 			}
 			i++;
