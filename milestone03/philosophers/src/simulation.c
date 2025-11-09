@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 18:03:36 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/11/09 17:23:29 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:55:30 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	eat(t_philo *philo, uint32_t left_fork, uint32_t right_fork)
 		usleep(1500);
 	pthread_mutex_lock(&philo->data->forks[left_fork]);
 	pthread_mutex_lock(&philo->data->forks[right_fork]);
-	philo->last_meal_time = eat_print(philo);
 	pthread_mutex_lock(&philo->data->rules.data_mutex);
+	philo->last_meal_time = eat_print(philo);
 	philo->meals_eaten++;
 	if (philo->meals_eaten >= philo->data->rules.max_eat)
 		philo->done_eating = true;
@@ -80,19 +80,16 @@ int	check_end(t_data *data)
 	i = 0;
 	while (i < data->rules.philos)
 	{
+		pthread_mutex_lock(&data->rules.data_mutex);
 		if (data->philos[i].done_eating == false)
+		{
+			pthread_mutex_unlock(&data->rules.data_mutex);
 			return (0);
+		}
+		pthread_mutex_unlock(&data->rules.data_mutex);
 		i++;
 	}
 	return (1);
-}
-
-static void	set_death(t_data *data, uint32_t i)
-{
-	pthread_mutex_lock(&data->rules.death_mutex);
-	data->rules.someone_died = true;
-	pthread_mutex_unlock(&data->rules.death_mutex);
-	death_print(&data->philos[i]);
 }
 
 void	*monitor_routine(void *arg)
@@ -110,12 +107,13 @@ void	*monitor_routine(void *arg)
 		{
 			pthread_mutex_lock(&data->rules.data_mutex);
 			if (get_time() - data->philos[i].last_meal_time > data->rules.ttl
-				&& data->philos[i].done_eating == false
-				&& pthread_mutex_unlock(&data->rules.data_mutex) == 0)
+				&& data->philos[i].done_eating == false)
 			{
+				pthread_mutex_unlock(&data->rules.data_mutex);
 				set_death(data, i);
 				return (NULL);
 			}
+			pthread_mutex_unlock(&data->rules.data_mutex);
 			i++;
 		}
 		usleep(1000);

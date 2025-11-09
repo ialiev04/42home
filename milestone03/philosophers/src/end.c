@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 14:12:58 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/11/09 17:23:59 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:55:21 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,12 @@ int	error_msg(void)
 	printf("*************************************************************");
 	printf("*******************************************\n");
 	return (1);
+}
+
+void	set_death(t_data *data, uint32_t i)
+{
+	pthread_mutex_lock(&data->rules.death_mutex);
+	data->rules.someone_died = true;
+	pthread_mutex_unlock(&data->rules.death_mutex);
+	death_print(&data->philos[i]);
 }

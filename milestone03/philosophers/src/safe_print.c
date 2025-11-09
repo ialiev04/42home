@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 13:35:43 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/11/09 17:24:16 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:37:50 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	think_print(t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->data->rules.print_mutex);
 		start = philo->data->rules.start_time;
-		printf("%llu %d is thinking\n", get_time() - start, philo->id);
+		printf("%lu %d is thinking\n", get_time() - start, philo->id);
 		pthread_mutex_unlock(&philo->data->rules.print_mutex);
 	}
 }
@@ -41,7 +41,7 @@ void	sleep_print(t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->data->rules.print_mutex);
 		start = philo->data->rules.start_time;
-		printf("%llu %d is sleeping\n", get_time() - start, philo->id);
+		printf("%lu %d is sleeping\n", get_time() - start, philo->id);
 		pthread_mutex_unlock(&philo->data->rules.print_mutex);
 	}
 	usleep(philo->data->rules.tts * 1000);
@@ -60,9 +60,9 @@ uint64_t	eat_print(t_philo *philo)
 		{
 			time = get_time();
 			timestamp = time - philo->data->rules.start_time;
-			printf("%llu %d has taken a fork\n", timestamp, philo->id);
-			printf("%llu %d has taken a fork\n", timestamp, philo->id);
-			printf("%llu %d is eating\n", timestamp, philo->id);
+			printf("%lu %d has taken a fork\n", timestamp, philo->id);
+			printf("%lu %d has taken a fork\n", timestamp, philo->id);
+			printf("%lu %d is eating\n", timestamp, philo->id);
 		}
 		pthread_mutex_unlock(&philo->data->rules.print_mutex);
 	}

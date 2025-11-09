@@ -6,7 +6,7 @@
 /*   By: ilaliev <ilaliev@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 00:05:29 by ilaliev           #+#    #+#             */
-/*   Updated: 2025/11/09 17:07:52 by ilaliev          ###   ########.fr       */
+/*   Updated: 2025/11/09 17:54:50 by ilaliev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int			error_exit(t_data *data, int i);
 void		think_print(t_philo *philo);
 void		sleep_print(t_philo *philo);
 void		free_forks(t_data *data, int forks);
+void		set_death(t_data *data, uint32_t i);
 
 #endif
